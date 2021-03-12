@@ -1,0 +1,16 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+Выход
+{% endblock %}
+
+{% block content %}
+<div>
+    <p class="lead">
+        Вы вышли с акккаунта
+    </p>
+    <a href="{% url 'login' %}">
+        Войти снова
+    </a>
+</div>
+
+{% endblock %}

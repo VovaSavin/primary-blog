@@ -1,0 +1,40 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+Авторизация
+{% endblock %}
+
+{% block main %}
+{% if form.errors %}
+<p class="errorlist">
+    <strong>Логин и пароль не соответствуют</strong>
+</p>
+{% endif %}
+{% if next %}
+{% if user.is_authenticated %}
+<p class="lead">
+    Вы уже авторизорованы
+</p>
+{% else %}
+<p class="lead">
+    Войдите, что бы посмотреть страницу
+</p>
+<div class="container" style="width: 75%; float: left;">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+        <input type="submit" value="login" class="btn btn-primary" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}

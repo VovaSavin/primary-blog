@@ -1,0 +1,33 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block main %}
+{% if user.is_authenticated %}
+
+<div class="container-fluid">
+    <p class="lead">
+        {{ user.bloger.name }} {{ user.bloger.surname }}
+    <p class="small lh-125">
+        <strong>Email: </strong>{{user.email}}<br>
+        <strong>Никнейм: </strong>{{user.username}}
+    </p>
+
+    </p>
+
+    <p class="small lh-125">
+        Возраст: {% if user.bloger.age %} {{ user.bloger.age }} {% else %} не указан {% endif %}
+    </p>
+    <p style="font-size: 14px;">
+        {{ user.bloger.about|safe }}
+    </p>
+
+</div>
+{% else %}
+<div class="container-fluid">
+    <p style="text-align: center;">
+        Перейдите на страницу авторизации.
+    </p>
+</div>
+{% endif %}
+{% endblock %}

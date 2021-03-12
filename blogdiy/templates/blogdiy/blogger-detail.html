@@ -1,0 +1,45 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block main %}
+
+<div class="container-fluid">
+    <p class="lead">
+        {{ oneblogger.name }} {{ oneblogger.surname }}
+    <p class="small lh-125">
+        {{oneblogger.user.email}}
+    </p>
+    ({{oneblogger.user}})
+    </p>
+
+    <p class="small lh-125">
+        Возраст: {{ oneblogger.age }}
+    </p>
+    {% if oneblogger.about %}
+    <p style="font-size: 14px;">
+        {{ oneblogger.about|safe }}
+    </p>
+    {% else %}
+    <p style="font-size: 14px;">
+        Нет информации о пользователе
+    </p>
+    {% endif %}
+
+</div>
+<div class="container-fluid">
+    {% if oneblogger.user.blog_set %}
+    {% for b in oneblogger.user.blog_set.all %}
+    <div class="container-fluid">
+        <a href="{% url 'blogs-detail' b.id %}" style="font-size: 14px;">{{ b.title }}</a>
+        <span class="small lh-125">
+            ({{ b.date }})
+        </span>
+    </div>
+    <hr>
+    <br>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}

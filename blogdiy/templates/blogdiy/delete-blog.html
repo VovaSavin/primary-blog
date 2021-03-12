@@ -1,0 +1,18 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+Удаление: {{title}}
+{% endblock %}
+
+{% block main %}
+<h6>
+    Вы собираетесь удалить: "{{title}}"
+</h6>
+<br>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Удалить" class="btn btn-danger btn-sm">
+    <span class="ml-3">
+        <a href="{% url 'blogs-detail' b.id %}" class="btn btn-info btn-sm">Отмена</a>
+    </span>
+</form>
+{% endblock %}

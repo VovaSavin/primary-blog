@@ -1,0 +1,57 @@
+body {
+	margin: 0px;
+}
+
+aside {
+	width: 18%;
+	min-height: inherit;
+	margin: 5px;
+	float: left;
+	text-align: center;
+}
+
+main {
+	width: 80%;
+	margin: 5px;
+	float: right;
+}
+label{
+	font-size: 14px;
+}
+#id_title, #id_text_blog, #id_date, #id_username, #id_password{
+	text-align: left;
+	display: block;
+	width: 50%;
+	height: calc(1.5em + .75rem + 2px);
+	padding: .375rem .75rem;
+	margin-top: 5px;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+#id_text_blog, #id_date{
+	height: auto;
+}
+#id_username, #id_password, #id_email, #id_password1, #id_password2, #id_name, #id_surname, #id_age, #id_about{
+	width: 80%;
+	text-align: center;
+}
+.errorlist{
+	color: red;
+}
+.blog-custom{
+	background-color: #d7f3f8;
+	border: 3px double rgb(122, 217, 230);
+	border-radius: 10px;
+}
+.blog-custom:hover {
+	border: 6px double rgb(122, 217, 230);
+	transform: scale(1.05);
+	transition: all .6s;
+}

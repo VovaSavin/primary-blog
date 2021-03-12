@@ -1,0 +1,31 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block main %}
+<div class="container-fluid" style="width: 70%; float: left;">
+    {% if blogs %}
+    {% for b in blogs %}
+    <div class="container-fluid pb-1 blog-custom">
+        <a href="{% url 'blogs-detail' b.id %}">{{ b.title }}</a>
+        <br>
+        <span class="small lh-125">
+            Автор: {{b.author_blog}}
+        </span>
+        <br>
+        <span class="small lh-125">
+            {{ b.date }}
+        </span>
+        <div class="container">
+            <p>
+                {{b.text_blog|truncatechars:80}}
+            </p>
+            <a href="{% url 'blogs-detail' b.id %}" class="small lh-125">Посмотреть...</a>
+        </div>
+        {{ b.like_set.all.count }}
+    </div>
+    <hr>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

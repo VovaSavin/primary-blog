@@ -1,0 +1,21 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block main %}
+
+{% if user.is_authenticated %}
+<p class="lead">
+    У вас уже есть аккаунт
+</p>
+{% else %}
+
+<form method="post" action="" style="width: 50%;">
+    {% csrf_token %}
+    {{forms.as_p}}
+    <input type="submit" value="Создать аккаунт" class="btn btn-success" />
+</form>
+
+{% endif %}
+{% endblock %}

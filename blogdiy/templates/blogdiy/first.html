@@ -1,0 +1,31 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid">
+    <div>
+        <h4 style="text-align: left;">
+            Главная страница
+        </h4>
+    </div>
+    {% if user.is_authenticated %}
+    <p class="lead">
+        Используйте навигацию вверху страницы
+    </p>
+    {% else %}
+    <p class="lead">
+        Это главная страница блога.<br> Для того чтобы иметь возможность создавать темы и комментировать статьи -
+        авторизируйтесь на сайте или пройдите регистрацию.
+        Или же, просто, просматривайте записи и читайте комментарии...
+        Если умеете.
+    </p>
+    {%endif%}
+</div>
+{% endblock %}

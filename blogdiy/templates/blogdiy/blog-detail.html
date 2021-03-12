@@ -1,0 +1,58 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block main %}
+<div class="container-fluid" style="width: 70%; float: left;">
+    <h5 style="text-align: left;">
+        {{ oneblog.title }}
+    </h5>
+    <hr>
+    <p class="lead">
+        {{ oneblog.text_blog }}
+    </p>
+    <p class="small lh-125">
+        Автор: <a href="{% url 'blogers-detail' oneblog.author_blog.id %}">{{ oneblog.author_blog }}</a>
+        <br>
+        {{ oneblog.date }}
+    </p>
+    {% if oneblog.author_blog == request.user %}
+    <a href="{% url 'delete-blog' oneblog.id %}">
+        Удалить блог
+    </a>
+    {% endif %}
+    <hr>
+    {% if user.is_authenticated %}
+    <form action="" method="POST" style="width: 65%;">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Опубликовать" class="btn btn-primary btn-sm">
+    </form>
+    <br>
+    <div class="container-fluid ml-3" style="width: 75%;">
+        {% if oneblog.comments_set %}
+        {% for comment in oneblog.comments_set.all %}
+        <span>{{ comment.text_comments }}</span>
+        <br>
+        <span class="small lh-125"><strong>Автор: </strong>{{ comment.author_comments }}</span><br>
+        <span class="small lh-125">
+            <strong>Дата публикации: </strong>{{ comment.date_comment }}
+            {% include 'blogdiy/comment-delete.html' %}
+        </span>
+        <hr>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% else %}
+    <span class="lead">
+        Для просмотра и публикации комментариев -
+        <a href="{% url 'login' %}?next={{request.path}}">
+            авторизируйтесь
+        </a>
+    </span>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}
