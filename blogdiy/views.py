@@ -4,7 +4,12 @@ from .models import (
     Bloger,
     Comments,
 )
-from .forms import EditProfile, EditBlogerProfile, CommentsForm
+from .forms import (
+    EditProfile,
+    EditBlogerProfile,
+    CommentsForm, 
+    ImageLoadForm,
+    )
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import (
     CreateView,
@@ -170,12 +175,15 @@ def edit_profile_info(request):
         try:
             forms2 = EditBlogerProfile(
                 request.POST, instance=request.user.bloger)
+            forms_foto = ImageLoadForm(request.POST, request.FILES, instance=request.user.bloger)
         except:
             forms2 = EditBlogerProfile(request.POST)
-        if forms.is_valid() and forms2.is_valid():
+            forms_foto = ImageLoadForm(request.POST, request.FILES)
+        if forms.is_valid() and forms2.is_valid() and forms_foto.is_valid():
             forms2.instance.user = request.user
             forms.save()
             forms2.save()
+            forms_foto.save()
             username = forms.cleaned_data.get('username')
             name = forms.cleaned_data.get('name')
             surname = forms.cleaned_data.get('surname')
@@ -186,12 +194,15 @@ def edit_profile_info(request):
         forms = EditProfile(instance=request.user)
         try:
             forms2 = EditBlogerProfile(instance=request.user.bloger)
+            forms_foto = ImageLoadForm(instance=request.user.bloger)
         except:
             forms2 = EditBlogerProfile()
+            forms_foto = ImageLoadForm()
     context = {
         'title': f'Редактирование {request.user}',
         'form': forms,
         'form2': forms2,
+        'forms_foto': forms_foto,
     }
     return render(request, 'blogdiy/create-blogger.html', context)
 

@@ -18,7 +18,10 @@ main {
 label{
 	font-size: 14px;
 }
-#id_title, #id_text_blog, #id_date, #id_username, #id_password{
+img {
+	border-radius: 50%;
+}
+#id_title, #id_text_blog, #id_date, #id_username, #id_password, #id_foto{
 	text-align: left;
 	display: block;
 	width: 50%;
@@ -38,9 +41,12 @@ label{
 #id_text_blog, #id_date{
 	height: auto;
 }
-#id_username, #id_password, #id_email, #id_password1, #id_password2, #id_name, #id_surname, #id_age, #id_about{
+#id_username, #id_password, #id_email, #id_password1, #id_password2, #id_name, #id_surname, #id_age, #id_about, #id_foto{
 	width: 80%;
 	text-align: center;
+}
+#id_foto {
+	text-align: left;
 }
 .errorlist{
 	color: red;

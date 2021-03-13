@@ -2,16 +2,26 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from PIL import Image
 
 # Create your models here.
 
 
 class Bloger(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    foto = models.ImageField(verbose_name='Фото профиля', default='foto-users/nofoto.png', upload_to='foto-users/')
     name = models.CharField(max_length=100, verbose_name='Имя', blank=True, null=True)
     surname = models.CharField(max_length=100, verbose_name='Фамилия', blank=True, null=True)
     age = models.PositiveIntegerField(verbose_name='Возвраст', blank=True, null=True)
     about = models.TextField(verbose_name='Инфо', blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        super().save
+        img_root = Image.open(self.foto.path)
+        if img_root.width > 200 or img_root.height > 200:
+            new_size = (200, 200)
+            img_root.thumbnail(new_size)
+            img_root.save()
 
     def __str__(self):
         return f'{self.name} {self.surname}'

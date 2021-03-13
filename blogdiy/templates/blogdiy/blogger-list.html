@@ -7,6 +7,7 @@
     {% if bloggers %}
     {% for b in bloggers %}
     <div class="container-fluid">
+        <img class="bd-placeholder-img mr-2" width="35" height="35" src="{{ b.foto.url }}">
         <a href="{% url 'blogers-detail' b.id %}" class="lead">{{ b.user }}</a>
         <br>
         <span class="small lh-125">

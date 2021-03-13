@@ -7,10 +7,11 @@
 <h5>
     Изменение данных о себе:
 </h5>
-<form action="" method="POST" style="width: 50%;">
+<form action="" method="POST" enctype="multipart/form-data" style="width: 50%;">
     {% csrf_token %}
     {{form.as_p}}
     {{form2.as_p}}
+    {{forms_foto.as_p}}
     <input type="submit" value="Внести изменения" class="btn btn-primary btn-sm">
 </form>
 {% endblock %}

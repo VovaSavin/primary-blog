@@ -61,6 +61,15 @@ class EditBlogerProfile(forms.ModelForm):
         model = Bloger
         fields = ['name', 'surname', 'age', 'about']
 
+class ImageLoadForm(forms.ModelForm):
+    foto = forms.ImageField(
+        label='Загрузить фото',
+        required=False,
+        widget=forms.FileInput()
+    )
+    class Meta:
+        model = Bloger
+        fields = ['foto']
 
 class CommentsForm(forms.ModelForm):
     text_comments = forms.CharField(
