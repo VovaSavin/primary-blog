@@ -11,7 +11,7 @@ from .models import (
 @admin.register(Bloger)
 class BlogerAdmin(admin.ModelAdmin):
     '''Зарегистрировали модель Bloger и расширим поля в админ странице'''
-    list_display = ('name', 'surname', 'age')
+    list_display = ('name', 'surname', 'age', 'foto')
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):

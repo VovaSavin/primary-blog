@@ -9,19 +9,23 @@ from PIL import Image
 
 class Bloger(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    foto = models.ImageField(verbose_name='Фото профиля', default='foto-users/nofoto.png', upload_to='foto-users/')
-    name = models.CharField(max_length=100, verbose_name='Имя', blank=True, null=True)
-    surname = models.CharField(max_length=100, verbose_name='Фамилия', blank=True, null=True)
-    age = models.PositiveIntegerField(verbose_name='Возвраст', blank=True, null=True)
+    name = models.CharField(
+        max_length=100, verbose_name='Имя', blank=True, null=True)
+    surname = models.CharField(
+        max_length=100, verbose_name='Фамилия', blank=True, null=True)
+    age = models.PositiveIntegerField(
+        verbose_name='Возвраст', blank=True, null=True)
     about = models.TextField(verbose_name='Инфо', blank=True, null=True)
+    foto = models.ImageField('Фото профиля',
+                             default='foto-users/nofoto.png', upload_to='foto-users/')
 
     def save(self, *args, **kwargs):
-        super().save
+        super().save()
         img_root = Image.open(self.foto.path)
         if img_root.width > 200 or img_root.height > 200:
             new_size = (200, 200)
             img_root.thumbnail(new_size)
-            img_root.save()
+            img_root.save(self.foto.path)
 
     def __str__(self):
         return f'{self.name} {self.surname}'
@@ -68,5 +72,3 @@ class Comments(models.Model):
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
         ordering = ['-date_comment']
-
-
