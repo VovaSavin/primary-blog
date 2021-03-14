@@ -9,9 +9,10 @@
     <div class="container-fluid pb-1 blog-custom">
         <a href="{% url 'blogs-detail' b.id %}">{{ b.title }}</a>
         <br>
-        <span class="small lh-125">
-            Автор: {{b.author_blog}}
-        </span>
+        <a href="{{ b.author_blog.bloger.get_absolute_url }}" style="text-decoration: none;">
+            <img class="bd-placeholder-img mr-2" width="25" height="25" src="{{ b.author_blog.bloger.foto.url }}">
+            <span class="small lh-125">{{b.author_blog}}</span>
+        </a>
         <br>
         <span class="small lh-125">
             {{ b.date }}

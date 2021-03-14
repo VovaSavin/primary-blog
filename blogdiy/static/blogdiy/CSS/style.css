@@ -52,13 +52,23 @@ img {
 .errorlist{
 	color: red;
 }
-.blog-custom{
+.blog-custom, .all-block-blog {
 	background-color: #d7f3f8;
 	border: 3px double rgb(122, 217, 230);
 	border-radius: 10px;
 }
+
 .blog-custom:hover {
 	border: 6px double rgb(122, 217, 230);
 	transform: scale(1.05);
 	transition: all .6s;
+}
+.custom-specblog {
+	padding: 10px;
+}
+.commnet-custom {
+	background-color: #b8f3cf;
+	border: 3px double rgb(48, 228, 87);
+	border-radius: 10px;
+	padding: 10px;
 }
