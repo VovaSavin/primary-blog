@@ -27,6 +27,7 @@
             <a class="p-2 link-secondary" href="{% url 'profile-create' %}" style="text-decoration: none;">Редактировать
                 профиль</a>
             <a class="p-2 link-secondary" href="{% url 'create-blog' %}" style="text-decoration: none;">Создать блог</a>
+            <a class="p-2 link-secondary" href="{% url 'your-messages' %}" style="text-decoration: none;">Мои сообщения</a>
             <a class="p-2 link-secondary mr-3" href="{% url 'logout' %}?next={{request.path}}"
                 style="text-decoration: none;">Выход</a>
             {% else %}

@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blogdiy.urls')),
     path('registration/', include('registrationonly.urls')),
+    path('yourmessage/', include('messagesusers.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 

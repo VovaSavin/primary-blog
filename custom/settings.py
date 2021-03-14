@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogdiy.apps.BlogdiyConfig',
     'registrationonly.apps.RegistrationonlyConfig',
+    'messagesusers.apps.MessagesusersConfig',
 ]
 
 MIDDLEWARE = [

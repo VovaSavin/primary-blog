@@ -6,6 +6,9 @@
 {% if user.is_authenticated %}
 
 <div class="container-fluid">
+    <div style="float: right;">
+        <a class="btn btn-outline-secondary" href="{% url 'message-writing' %}">Написать</a>
+    </div>
     <p class="lead">
         <img class="bd-placeholder-img mr-2" width="75" height="75" src="{{ user.bloger.foto.url }}">
         {{ user.bloger.name }} {{ user.bloger.surname }}

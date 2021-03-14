@@ -1,0 +1,27 @@
+{% extends "blogdiy/index.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block main %}
+<div class="container-fluid" style="width: 70%; float: left;">
+    {% if sms %}
+    {% for s in sms %}
+    <div
+        class="container-fluid pb-1 {% if s.addressee == request.user %}blog-custom-g{% elif s.sender == request.user %}blog-custom{% endif %}">
+        {% if s.addressee == request.user %}
+        <p class="small lh-125"><strong>От кого:</strong> {{ s.sender }}</p>
+        {% elif s.sender == request.user %}
+        <p class="small lh-125"><strong>Кому:</strong> {{ s.addressee }}</p>
+        {% endif %}
+        <p class="small lh-125"><strong>Текст:</strong></p>
+        <P>{{ s.text_message }}</p>
+        <p class="small lh-125">Дата: {{ s.date_message }}</p>
+        <a href="{% url 'one-message' s.id %}" class="small lh-125">Прочитать</a>
+    </div>
+    <hr>
+    {% endfor %}
+    {% else %}
+    <p>У вас, пока что, нет сообщений.</p>
+    {% endif %}
+</div>
+{% endblock %}
