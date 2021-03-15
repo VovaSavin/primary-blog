@@ -25,7 +25,7 @@ img {
 	border-radius: 50%;
 }
 
-#id_title, #id_text_blog, #id_date, #id_username, #id_password, #id_foto {
+#id_title, #id_text_blog, #id_date, #id_username, #id_password, #id_foto, #id_addressee, #id_text_message {
 	text-align: left;
 	display: block;
 	width: 50%;
@@ -43,7 +43,7 @@ img {
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-#id_text_blog, #id_date {
+#id_text_blog, #id_date, #id_text_message {
 	height: auto;
 }
 
@@ -60,7 +60,7 @@ img {
 	color: red;
 }
 
-.blog-custom, .all-block-blog, .blog-custom-g {
+.blog-custom, .all-block-blog {
 	background-color: #d7f3f8;
 	border: 3px double rgb(122, 217, 230);
 	border-radius: 10px;
@@ -71,14 +71,15 @@ img {
 	border: 3px double rgb(121, 245, 121);
 }
 
-.blog-custom:hover, .blog-custom-g:hover {
+.blog-custom:hover {
 	border: 6px double rgb(122, 217, 230);
 	transform: scale(1.05);
 	transition: all .6s;
 }
 
-.blog-custom-g:hover {
-	border: 6px double rgb(121, 245, 121);
+.message-custom {
+	float: left;
+	border: 1px solid rgb(215, 216, 213);
 }
 
 .custom-specblog {
@@ -90,4 +91,14 @@ img {
 	border: 3px double rgb(48, 228, 87);
 	border-radius: 10px;
 	padding: 10px;
+}
+.my-mess-l, .my-mess-r{
+	display: block;
+	border-radius: 5px;
+}
+.my-mess-r{
+	background-color: rgb(47, 248, 255);
+}
+.my-mess-l{
+	background-color: rgb(63, 245, 108);
 }

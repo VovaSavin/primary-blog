@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import MessagesBetweenUsers
 from django.views.generic import (
     ListView,
@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -29,6 +30,17 @@ class MessagesList(LoginRequiredMixin, ListView):
         context['title'] = 'Ваши сообщения'
         return context
 
+class MessagesListUsers(ListView):
+    model = MessagesBetweenUsers
+    context_object_name = 'mess'
+    template_name = 'messagesusers/message-list-users.html'
+
+    def get_queryset(self, **kwargs):
+        my_recepient = get_object_or_404(User, username=self.kwargs.get('username'))
+        my_sender = get_object_or_404(User, username=self.kwargs.get('username'))
+        my_sent = MessagesBetweenUsers.objects.filter(sender=self.request.user).filter(addressee=my_recepient)
+        my_received = MessagesBetweenUsers.objects.filter(addressee=self.request.user).filter (sender=my_sender)  
+        return my_sent | my_received.order_by('-date_message') 
 
 class MessageDetail(LoginRequiredMixin, DetailView):
     '''Отображение конкретного сообщения'''

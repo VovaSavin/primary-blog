@@ -3,20 +3,21 @@
 {{ title }}
 {% endblock %}
 {% block main %}
-<div class="container-fluid" style="width: 70%; float: left;">
+<div class="container-fluid message-custom" style="width: 70%;">
     {% if sms %}
     {% for s in sms %}
-    <div
-        class="container-fluid pb-1 {% if s.addressee == request.user %}blog-custom-g{% elif s.sender == request.user %}blog-custom{% endif %}">
+    <div class="container-fluid pb-1 pt-3">
         {% if s.addressee == request.user %}
-        <p class="small lh-125"><strong>От кого:</strong> {{ s.sender }}</p>
-        {% elif s.sender == request.user %}
-        <p class="small lh-125"><strong>Кому:</strong> {{ s.addressee }}</p>
-        {% endif %}
-        <p class="small lh-125"><strong>Текст:</strong></p>
-        <P>{{ s.text_message }}</p>
+        <span style="font-weight: bold;">Вам сообщение от: </span><span>{{ s.sender }}</span>
         <p class="small lh-125">Дата: {{ s.date_message }}</p>
         <a href="{% url 'one-message' s.id %}" class="small lh-125">Прочитать</a>
+        <a href="{% url 'your-messages-user' s.sender %}" class="small lh-125">Переписка</a>
+        {% elif s.sender == request.user %}
+        <span style="font-weight: bold;">Ваше сообщение к: </span><span>{{ s.addressee }}</span>
+        <p class="small lh-125">Дата: {{ s.date_message }}</p>
+        <a href="{% url 'one-message' s.id %}" class="small lh-125">Прочитать</a>
+        <a href="{% url 'your-messages-user' s.addressee %}" class="small lh-125">Переписка</a>
+        {% endif %}
     </div>
     <hr>
     {% endfor %}
