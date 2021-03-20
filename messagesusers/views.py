@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from .models import MessagesBetweenUsers
+from .forms import MessagesForm
 from django.views.generic import (
     ListView,
     DetailView
 )
 from django.utils import timezone
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -32,7 +33,7 @@ class MessagesList(LoginRequiredMixin, ListView):
         return context
 
 
-class MessagesInboxList(ListView):
+class MessagesInboxList(LoginRequiredMixin, ListView):
     '''Отображение входящих сообщений для пользователя'''
     model = MessagesBetweenUsers
     context_object_name = 'sms'
@@ -46,7 +47,7 @@ class MessagesInboxList(ListView):
         context['title'] = 'Входящие сообщения'
         return context
 
-class MessagesOutboxList(ListView):
+class MessagesOutboxList(LoginRequiredMixin, ListView):
     '''Отображение исходящих сообщений пользователя'''
     model = MessagesBetweenUsers
     context_object_name = 'sms'
@@ -60,10 +61,11 @@ class MessagesOutboxList(ListView):
         context['title'] = 'Отправленные сообщения'
         return context
 
-class MessagesListUsers(LoginRequiredMixin, ListView):
+class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
     model = MessagesBetweenUsers
     context_object_name = 'mess'
     template_name = 'messagesusers/message-list-users.html'
+    
 
     def get_queryset(self, **kwargs):
         my_recepient = get_object_or_404(

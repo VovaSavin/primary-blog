@@ -7,11 +7,14 @@
 <div class="container-fluid">
     <p class="lead">
         <img class="bd-placeholder-img mr-2" width="55" height="55" src="{{ oneblogger.foto.url }}">
-        {{ oneblogger.name }} {{ oneblogger.surname }}
+        <br>
+        {{ oneblogger.name }} {{ oneblogger.surname }} ({{oneblogger.user}})<br>
+        {% if request.user != oneblogger.user %}
+        <a href="{% url 'your-messages-user' oneblogger.user %}" class="btn btn-outline-info"> Написать пользователю</a>
+        {% endif %}
     <p class="small lh-125">
         {{oneblogger.user.email}}
     </p>
-    ({{oneblogger.user}})
     </p>
 
     <p class="small lh-125">
