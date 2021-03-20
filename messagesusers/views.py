@@ -65,7 +65,25 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
     model = MessagesBetweenUsers
     context_object_name = 'mess'
     template_name = 'messagesusers/message-list-users.html'
+    form_class = MessagesForm
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('your-messages-user', kwargs={'username': self.kwargs.get('username')})
     
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid:
+            return self.form_valid(form)
+        else:
+            return self.form.form_invalid(form)
+    
+    def form_valid(self, form, **kwargs):
+        self.object = form.save(commit=False)
+        self.object.sender = self.request.user
+        self.object.addressee = get_object_or_404(User, username=self.kwargs.get('username'))
+        self.object.date_message = timezone.now()
+        self.object.save()
+        return super().form_valid(form)
 
     def get_queryset(self, **kwargs):
         my_recepient = get_object_or_404(

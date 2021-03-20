@@ -3,26 +3,26 @@
 {{ title }}
 {% endblock %}
 {% block main %}
-<div class="container-fluid message-custom" style="width: 70%;">
+<div class="container-fluid message-custom" style="width: 75%;">
     {% if mess %}
     {% for s in mess %}
-    <div class="container-fluid">
+    <div class="container">
         {% if request.user == s.sender %}
         <div class="container" style="overflow: auto; width: 50%; float: right;">
             <div class="container-fluid mt-1 mb-3 my-mess-r">
                 <span class="small lh-125">Вы:</span><br>
                 <span style="font-size: 14px;">{{ s.text_message }}</span><br>
-                <span style="font-size: 10px;">Дата: {{ s.date_message }}</span>
+                <span style="font-size: 10px;">{{ s.date_message }}</span>
             </div>
-        </div>
+        </div><br>
         {% elif request.user == s.addressee %}
         <div class="container" style="overflow: auto; width: 50%; float: left;">
             <div class="container-fluid mt-1 mb-3 my-mess-l">
                 <span class="small lh-125">{{ s.sender }}:</span><br>
                 <span style="font-size: 14px;">{{ s.text_message }}</span><br>
-                <span style="font-size: 10px;">Дата: {{ s.date_message }}</span>
+                <span style="font-size: 10px;">{{ s.date_message }}</span>
             </div>
-        </div>
+        </div><br>
         {% endif %}
     </div>
     <br><br><br><br><br>
@@ -30,5 +30,10 @@
     {% else %}
     <p>У вас, пока что, нет перписки с этим пользователём.</p>
     {% endif %}
+    <form action="" method="POST" style="width: 100%;" class="mb-1">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Отправить" class="btn btn-primary btn-sm">
+    </form>
 </div>
 {% endblock %}

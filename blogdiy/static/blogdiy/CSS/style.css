@@ -78,6 +78,7 @@ img {
 }
 
 .message-custom {
+	background-color: rgb(241, 238, 238);
 	float: left;
 	border: 1px solid rgb(215, 216, 213);
 }
