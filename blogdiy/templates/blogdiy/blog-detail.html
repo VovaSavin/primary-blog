@@ -3,7 +3,7 @@
 {{ title }}
 {% endblock %}
 {% block main %}
-<div class="container-fluid all-block-blog" style="width: 70%; float: left;">
+<div class="container-fluid" style="width: 70%; float: left;">
     <h5 class="mt-3" style="text-align: left;">
         {{ oneblog.title }}
     </h5>
@@ -35,7 +35,7 @@
     <div class="container-fluid ml-3" style="width: 75%;">
         {% if oneblog.comments_set %}
         {% for comment in oneblog.comments_set.all %}
-        <div class="commnet-custom">
+        <div>
             <span>{{ comment.text_comments }}</span>
             <br>
             <a href="{{ comment.author_comments.bloger.get_absolute_url }}" style="text-decoration: none;">

@@ -2,6 +2,9 @@ from django.contrib import admin
 from .models import MessagesBetweenUsers
 
 # Register your models here.
+
+
+
 @admin.register(MessagesBetweenUsers)
 class MessagesBetweenUsersAdmin(admin.ModelAdmin):
     '''

@@ -3,6 +3,14 @@
 {{ title }}
 {% endblock %}
 {% block main %}
+<div class="mb-3" style="text-align: center; width: 70%;">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'your-messages-inbox' %}" class="btn btn-outline-secondary">Входящие</a>
+        <a href="{% url 'your-messages' %}" class="btn btn-outline-secondary">Все</a>
+        <a href="{% url 'your-messages-outbox' %}" class="btn btn-outline-secondary">Исходящие</a>
+    </div>
+</div>
+
 <div class="container-fluid message-custom" style="width: 70%;">
     {% if sms %}
     {% for s in sms %}
@@ -10,12 +18,10 @@
         {% if s.addressee == request.user %}
         <span style="font-weight: bold;">Вам сообщение от: </span><span>{{ s.sender }}</span>
         <p class="small lh-125">Дата: {{ s.date_message }}</p>
-        <a href="{% url 'one-message' s.id %}" class="small lh-125">Прочитать</a>
         <a href="{% url 'your-messages-user' s.sender %}" class="small lh-125">Переписка</a>
         {% elif s.sender == request.user %}
         <span style="font-weight: bold;">Ваше сообщение к: </span><span>{{ s.addressee }}</span>
         <p class="small lh-125">Дата: {{ s.date_message }}</p>
-        <a href="{% url 'one-message' s.id %}" class="small lh-125">Прочитать</a>
         <a href="{% url 'your-messages-user' s.addressee %}" class="small lh-125">Переписка</a>
         {% endif %}
     </div>

@@ -60,7 +60,7 @@ img {
 	color: red;
 }
 
-.blog-custom, .all-block-blog {
+.blog-custom{
 	background-color: #d7f3f8;
 	border: 3px double rgb(122, 217, 230);
 	border-radius: 10px;
@@ -86,19 +86,14 @@ img {
 	padding: 10px;
 }
 
-.commnet-custom {
-	background-color: #b8f3cf;
-	border: 3px double rgb(48, 228, 87);
-	border-radius: 10px;
-	padding: 10px;
-}
 .my-mess-l, .my-mess-r{
 	display: block;
 	border-radius: 5px;
+	padding: 5px;
 }
 .my-mess-r{
-	background-color: rgb(47, 248, 255);
+	background-color: rgb(168, 242, 245);
 }
 .my-mess-l{
-	background-color: rgb(63, 245, 108);
+	background-color: rgb(174, 253, 194);
 }
