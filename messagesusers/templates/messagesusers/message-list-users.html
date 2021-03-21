@@ -4,32 +4,36 @@
 {% endblock %}
 {% block main %}
 <div class="container-fluid message-custom" style="width: 75%;">
-    {% if mess %}
-    {% for s in mess %}
-    <div class="container">
+    <div style="overflow-y: scroll;">
+        {% if mess %}
+        {% for s in mess %}
         {% if request.user == s.sender %}
-        <div class="container" style="overflow: auto; width: 50%; float: right;">
+        <div class="container-fluid" style="overflow: auto; width: 50%; float: right; height: auto;">
             <div class="container-fluid mt-1 mb-3 my-mess-r">
+                <span><img class="bd-placeholder-img mr-2" width="25" height="25"
+                        src="{{ s.sender.bloger.foto.url }}"></span>
                 <span class="small lh-125">Вы:</span><br>
                 <span style="font-size: 14px;">{{ s.text_message }}</span><br>
                 <span style="font-size: 10px;">{{ s.date_message }}</span>
             </div>
         </div><br>
         {% elif request.user == s.addressee %}
-        <div class="container" style="overflow: auto; width: 50%; float: left;">
+        <div class="container-fluid" style="overflow: auto; width: 50%; float: left; height: auto;">
             <div class="container-fluid mt-1 mb-3 my-mess-l">
+                <span><img class="bd-placeholder-img mr-2" width="25" height="25"
+                        src="{{ s.sender.bloger.foto.url }}"></span>
                 <span class="small lh-125">{{ s.sender }}:</span><br>
                 <span style="font-size: 14px;">{{ s.text_message }}</span><br>
                 <span style="font-size: 10px;">{{ s.date_message }}</span>
             </div>
         </div><br>
         {% endif %}
+        <br><br><br><br><br>
+        {% endfor %}
+        {% else %}
+        <p>У вас, пока что, нет перписки с этим пользователём.</p>
+        {% endif %}
     </div>
-    <br><br><br><br><br>
-    {% endfor %}
-    {% else %}
-    <p>У вас, пока что, нет перписки с этим пользователём.</p>
-    {% endif %}
     <form action="" method="POST" style="width: 100%;" class="mb-1">
         {% csrf_token %}
         {{form.as_p}}

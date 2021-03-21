@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.core.exceptions import ValidationError
 
 
 # Create your views here.
@@ -21,6 +22,7 @@ class MessagesList(LoginRequiredMixin, ListView):
     model = MessagesBetweenUsers
     context_object_name = 'sms'
     template_name = 'messagesusers/message-list.html'
+    paginate_by = 5
 
     def get_queryset(self, **kwargs):
         sett = MessagesBetweenUsers.objects.filter(Q(sender=self.request.user) | Q(addressee=self.request.user)).order_by('-date_message')
@@ -124,5 +126,7 @@ class MessageCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.sender = self.request.user
+        if form.instance.addressee == self.request.user:
+            raise ValidationError('Вы не можете отправить сообщение самому себе!')
         form.instance.date_message = timezone.now()
         return super().form_valid(form)

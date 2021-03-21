@@ -11,7 +11,7 @@ class MessagesBetweenUsers(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='user_sender', verbose_name='Отправитель')
     addressee = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='user_addressee', verbose_name='Получатель')
+        User, on_delete=models.CASCADE, related_name='user_addressee', verbose_name='Получатель(выберите из списка)')
     text_message = models.TextField(verbose_name='Текст сообщения')
     date_message = models.DateTimeField(
         default=timezone.now, verbose_name='Дата отправки')

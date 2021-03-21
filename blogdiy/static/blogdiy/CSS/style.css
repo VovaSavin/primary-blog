@@ -89,7 +89,7 @@ img {
 
 .my-mess-l, .my-mess-r{
 	display: block;
-	border-radius: 5px;
+	border-radius: 10px;
 	padding: 5px;
 }
 .my-mess-r{
