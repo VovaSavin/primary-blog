@@ -86,7 +86,13 @@ img {
 .custom-specblog {
 	padding: 10px;
 }
-
+.scrolling{
+	background-color: rgb(218, 247, 238);
+	position: relative;
+	overflow-y: scroll;
+	min-height: 470px;
+	max-height: 470px;
+}
 .my-mess-l, .my-mess-r{
 	display: block;
 	border-radius: 10px;

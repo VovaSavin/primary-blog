@@ -78,7 +78,7 @@
         </main>
     </div>
     <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">© 2021-2021 Vova Savin</p>
+        <p class="mb-1">© 2021-2021 <span style="font-size: 12px;">edit by</span> Vova Savin</p>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Privacy</a></li>
             <li class="list-inline-item"><a href="#">Terms</a></li>
@@ -87,6 +87,13 @@
         {% block footer %}
         {% endblock %}
     </footer>
+    <script type="module">
+        import { Toast } from 'bootstrap.esm.min.js'
+
+        Array.from(document.querySelectorAll('.toast'))
+            .forEach(toastNode => new Toast(toastNode))
+    </script>
+
 </body>
 
 </html>
