@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import MessagesBetweenUsers
 from .forms import MessagesForm
 from django.views.generic import (
@@ -25,9 +25,9 @@ class MessagesList(LoginRequiredMixin, ListView):
     paginate_by = 5
 
     def get_queryset(self, **kwargs):
-        sett = MessagesBetweenUsers.objects.filter(Q(sender=self.request.user) | Q(addressee=self.request.user)).order_by('-date_message')
+        sett = MessagesBetweenUsers.objects.filter(Q(sender=self.request.user) | Q(
+            addressee=self.request.user)).order_by('-date_message')
         return sett
-
 
     def get_context_data(self, **kwargs):
         context = super(MessagesList, self).get_context_data(**kwargs)
@@ -43,11 +43,12 @@ class MessagesInboxList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return MessagesBetweenUsers.objects.filter(addressee=self.request.user).order_by('-date_message')
-    
+
     def get_context_data(self, **kwargs):
         context = super(MessagesInboxList, self).get_context_data(**kwargs)
         context['title'] = 'Входящие сообщения'
         return context
+
 
 class MessagesOutboxList(LoginRequiredMixin, ListView):
     '''Отображение исходящих сообщений пользователя'''
@@ -63,6 +64,7 @@ class MessagesOutboxList(LoginRequiredMixin, ListView):
         context['title'] = 'Отправленные сообщения'
         return context
 
+
 class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
     model = MessagesBetweenUsers
     context_object_name = 'mess'
@@ -71,18 +73,19 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
 
     def get_success_url(self, **kwargs):
         return reverse_lazy('your-messages-user', kwargs={'username': self.kwargs.get('username')})
-    
+
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid:
             return self.form_valid(form)
         else:
             return self.form.form_invalid(form)
-    
+
     def form_valid(self, form, **kwargs):
         self.object = form.save(commit=False)
         self.object.sender = self.request.user
-        self.object.addressee = get_object_or_404(User, username=self.kwargs.get('username'))
+        self.object.addressee = get_object_or_404(
+            User, username=self.kwargs.get('username'))
         self.object.date_message = timezone.now()
         self.object.save()
         return super().form_valid(form)
@@ -127,6 +130,22 @@ class MessageCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.sender = self.request.user
         if form.instance.addressee == self.request.user:
-            raise ValidationError('Вы не можете отправить сообщение самому себе!')
+            raise ValidationError(
+                'Вы не можете отправить сообщение самому себе!')
         form.instance.date_message = timezone.now()
         return super().form_valid(form)
+
+
+def message_delete(request, pk, type, *args):
+    '''Delete messages for request user'''
+    my_messages = MessagesBetweenUsers.objects.get(pk=pk)
+    name = User.objects.get(username=my_messages.addressee)
+    if type == 'deletemymessage':
+        my_messages.delete()
+        return redirect(reverse_lazy('your-messages-user', args=[str(name)]))
+    else:
+        return redirect(reverse_lazy('your-messages-user', args=[str(name)]))
+    context = {
+        'message': my_messages,
+    }
+    return render(request, 'messagesusers/message-delete.html', context)

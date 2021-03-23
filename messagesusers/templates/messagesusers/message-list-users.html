@@ -15,6 +15,7 @@
                 <span class="small lh-125">Вы:</span><br>
                 <span style="font-size: 14px;">{{ s.text_message }}</span><br>
                 <span style="font-size: 10px;">{{ s.date_message }}</span>
+                {% include 'messagesusers/message-delete.html' %}
             </div>
         </div><br>
         {% elif request.user == s.addressee %}

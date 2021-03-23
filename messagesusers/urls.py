@@ -7,6 +7,6 @@ urlpatterns = [
     path('outbox', views.MessagesOutboxList.as_view(), name='your-messages-outbox'),
     path('writing-message', views.MessageCreate.as_view(), name='message-writing'),
     path('<int:pk>', views.MessageDetail.as_view(), name='one-message'),
-    
     path('<str:username>', views.MessagesListUsers.as_view(), name='your-messages-user'),
+    path('<int:pk>/<slug:type>', views.message_delete, name='delete-message'),
 ]

@@ -60,7 +60,7 @@ img {
 	color: red;
 }
 
-.blog-custom{
+.blog-custom {
 	background-color: #d7f3f8;
 	border: 3px double rgb(122, 217, 230);
 	border-radius: 10px;
@@ -86,21 +86,35 @@ img {
 .custom-specblog {
 	padding: 10px;
 }
-.scrolling{
+
+.scrolling {
 	background-color: rgb(218, 247, 238);
 	position: relative;
 	overflow-y: scroll;
 	min-height: 470px;
 	max-height: 470px;
 }
-.my-mess-l, .my-mess-r{
+
+.my-mess-l, .my-mess-r {
 	display: block;
 	border-radius: 10px;
 	padding: 5px;
 }
-.my-mess-r{
+
+.my-mess-r {
 	background-color: rgb(168, 242, 245);
 }
-.my-mess-l{
+
+.my-mess-l {
 	background-color: rgb(174, 253, 194);
+}
+
+.for-delete_message {
+	float: right;
+	font-size: 10px;
+	color: rgb(168, 242, 220);
+}
+
+.for-delete_message:hover {
+	color: blue;
 }
