@@ -7,13 +7,17 @@ aside {
 	width: 18%;
 	min-height: inherit;
 	margin: 5px;
+	padding-right: 5px;
 	float: left;
 	text-align: center;
 }
 
 main {
+	position: relative;
+	overflow: auto;
 	width: 80%;
 	margin: 5px;
+	padding-left: 5px;
 	float: right;
 }
 
@@ -86,7 +90,9 @@ img {
 .custom-specblog {
 	padding: 10px;
 }
-
+.shadow{
+	box-shadow: 0 0 5px;
+}
 .scrolling {
 	background-color: rgb(218, 247, 238);
 	position: relative;
