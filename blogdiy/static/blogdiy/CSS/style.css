@@ -90,9 +90,11 @@ img {
 .custom-specblog {
 	padding: 10px;
 }
-.shadow{
+
+.shadow {
 	box-shadow: 0 0 5px;
 }
+
 .scrolling {
 	background-color: rgb(218, 247, 238);
 	position: relative;
@@ -124,3 +126,13 @@ img {
 .for-delete_message:hover {
 	color: blue;
 }
+
+#myphoto {
+	cursor: pointer;
+	transition: all .8s;
+}
+#myphoto.growing{
+	width: 200px;
+	height: 200px;
+}
+

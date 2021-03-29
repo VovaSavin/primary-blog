@@ -13,3 +13,8 @@ $('body').on('click', '.b-comment', function (event) {
 $('body').on('click', '.comment-custom', function (event) {
     alert(confirm('Вы уверены?'));
 });
+
+myphoto.onclick = function () {
+    myphoto.classList.add('growing');
+};
+
