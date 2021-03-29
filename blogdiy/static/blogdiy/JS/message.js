@@ -3,12 +3,13 @@ $('body').on('click', '.b-cust', function (event) {
 });
 
 $('body').on('click', '.for-delete_message', function (event) {
-    event.preventDefault();
-    if (confirm('Вы уверены?')) {
-        var url = $(this).attr('data-url')
-        var tag_span = $(this).parent()
-        console.log(url)
-    }
+    alert(confirm('Вы уверены?'));
+});
 
-    popup.classList.add('show');
+$('body').on('click', '.b-comment', function (event) {
+    alert('Комментарий добавлен!');
+});
+
+$('body').on('click', '.comment-custom', function (event) {
+    alert(confirm('Вы уверены?'));
 });

@@ -1,10 +1,12 @@
 <span class="small lh-125" style="float: right;">
     {% if comment.author_comments == request.user %}
-    <a href="{% url 'delete-comment' comment.pk 'delete' %}?next={{request.path}}" style="text-decoration: none;">
+    <a href="{% url 'delete-comment' comment.pk 'delete' %}?next={{request.path}}" style="text-decoration: none;"
+        class="comment-custom">
         Удалить
     </a>
     {% elif comment.to_blog.author_blog == request.user %}
-    <a href="{% url 'delete-comment' comment.pk 'delete' %}?next={{request.path}}" style="text-decoration: none;">
+    <a href="{% url 'delete-comment' comment.pk 'delete' %}?next={{request.path}}" style="text-decoration: none;"
+        class="comment-custom">
         Удалить
     </a>
     {% endif %}

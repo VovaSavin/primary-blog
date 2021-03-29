@@ -1,5 +1,5 @@
 <span>
-    <a class="for-delete_message" data-url={% url 'delete-message' s.pk 'deletemymessage' %} href="#"
+    <a class="for-delete_message" href="{% url 'delete-message' s.pk 'deletemymessage' %}"
         style="text-decoration: none;">
         Удалить
     </a>
