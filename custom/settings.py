@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blogdiy.apps.BlogdiyConfig',
     'registrationonly.apps.RegistrationonlyConfig',
     'messagesusers.apps.MessagesusersConfig',
+    'other.apps.OtherConfig',
 ]
 
 MIDDLEWARE = [

@@ -18,3 +18,7 @@ myphoto.onclick = function () {
     myphoto.classList.add('growing');
 };
 
+$(document).ready(function () {
+    $(".dropdown-toggle").dropdown();
+});
+

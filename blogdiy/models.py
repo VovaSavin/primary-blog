@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
 
+
 # Create your models here.
 
 
@@ -44,6 +45,7 @@ class Blog(models.Model):
         User, on_delete=models.CASCADE, verbose_name='Автор')
     text_blog = models.TextField(verbose_name='Описание')
     date = models.DateTimeField(default=timezone.now, verbose_name='Дата')
+    picture_blog = models.ImageField(verbose_name='Изображение', default='photo_blog/no-foto.gif', upload_to='photo_blog/')
 
     def __str__(self):
         return f'{self.title}'

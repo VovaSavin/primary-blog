@@ -7,9 +7,9 @@ from .models import (
 from .forms import (
     EditProfile,
     EditBlogerProfile,
-    CommentsForm, 
+    CommentsForm,
     ImageLoadForm,
-    )
+)
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import (
     CreateView,
@@ -21,9 +21,25 @@ from django.utils import timezone
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.core.exceptions import ValidationError
+
+import monobankua
 
 
 # Create your views here.
+
+def index(request):
+    mono = monobankua.Monobank.currencies_info()
+    mono = mono[:5]
+    mono_d, mono_e, mono_r, mono_ed, mono_z = mono[0], mono[1], mono[2], mono[3], mono[4]
+    context = {
+        'dollar': mono_d,
+        'euro': mono_e,
+        'rubl': mono_r,
+        'dollareuro': mono_ed,
+        'zloty': mono_z,
+    }
+    return render(request, 'blogdiy/index.html', context)
 
 
 def main_page(request):
@@ -76,7 +92,6 @@ class BlogsDetail(DetailView, FormMixin):
         self.object.author_comments = self.request.user
         self.object.save()
         return super().form_valid(form)
- 
 
     def get_context_data(self, **kwargs):
         context = super(BlogsDetail, self).get_context_data(**kwargs)
@@ -128,10 +143,11 @@ class BlogerDetail(DetailView):
 class CreateBlog(LoginRequiredMixin, CreateView):
     '''Создание блога на стороне клиента'''
     model = Blog
-    fields = ['title', 'text_blog', 'date']
+    fields = ['title', 'text_blog', 'date', 'picture_blog']
     initial = {
         'date': timezone.now,
     }
+
     template_name = 'blogdiy/create-blog.html'
 
     def form_valid(self, form):
@@ -158,11 +174,28 @@ class DeleteBlog(UserPassesTestMixin, DeleteView):
         return context
 
 
+def currency_count():
+    mono = monobankua.Monobank.currencies_info()
+    mono = mono[:5]
+    my_currency = []
+    for m in mono:
+        my_currency.append(m)
+    return my_currency
+
+
 @login_required
 def my_pofile(request):
     '''Профиль пользователя/блоггера'''
+    mono = monobankua.Monobank.currencies_info()
+    mono = mono[:5]
+    mono_d, mono_e, mono_r, mono_ed, mono_z = mono[0], mono[1], mono[2], mono[3], mono[4]
     context = {
         'title': 'Кабинет пользователя',
+        'dollar': mono_d,
+        'euro': mono_e,
+        'rubl': mono_r,
+        'dollareuro': mono_ed,
+        'zloty': mono_z,
     }
     return render(request, 'blogdiy/profile.html', context)
 
@@ -175,7 +208,8 @@ def edit_profile_info(request):
         try:
             forms2 = EditBlogerProfile(
                 request.POST, instance=request.user.bloger)
-            forms_foto = ImageLoadForm(request.POST, request.FILES, instance=request.user.bloger)
+            forms_foto = ImageLoadForm(
+                request.POST, request.FILES, instance=request.user.bloger)
         except:
             forms2 = EditBlogerProfile(request.POST)
             forms_foto = ImageLoadForm(request.POST, request.FILES)
@@ -209,4 +243,3 @@ def edit_profile_info(request):
 
 class UpdateProfile(UpdateView):
     pass
-

@@ -7,7 +7,14 @@
 <h5>
     Создать тему блога:
 </h5>
-<form action="" method="POST" class="form-label">
+{% if form.errors %}
+<p class="errorlist">
+    <strong>Формат изображение не соответствует заданному...<br>
+    <span style="font-size: 12px;">(Допустимые форматы: BMP, EPS, GIF, JPEG, PDF, PNG, PNM, TIFF)</span>
+</strong>
+</p>
+{% endif %}
+<form action="" method="POST" enctype="multipart/form-data" class="form-label">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Создать" class="btn btn-primary btn-sm">

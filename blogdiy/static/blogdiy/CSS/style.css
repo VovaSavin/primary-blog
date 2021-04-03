@@ -25,7 +25,7 @@ label {
 	font-size: 14px;
 }
 
-img {
+img.bd-placeholder-img {
 	border-radius: 50%;
 }
 
@@ -131,8 +131,19 @@ img {
 	cursor: pointer;
 	transition: all .8s;
 }
-#myphoto.growing{
+
+#myphoto.growing {
 	width: 200px;
 	height: 200px;
 }
 
+#myphoto.growing_small {
+	width: 75px;
+	height: 75px;	
+}
+
+#my-id {
+	position: inherit;
+	float: none;
+	transform: none;
+}

@@ -8,7 +8,10 @@
         {{ oneblog.title }}
     </h5>
     <hr>
-    <p class="lead">
+    <div class="container-fluid" style="text-align: center;">
+        <img class="img-fluid" src="{{ oneblog.picture_blog.url }}" alt="{{ oneblog.title }}">
+    </div>
+    <p style="font-size: 14px;">
         {{ oneblog.text_blog }}
     </p>
     <p class="small lh-125">

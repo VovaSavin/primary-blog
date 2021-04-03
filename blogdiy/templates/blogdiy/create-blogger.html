@@ -7,6 +7,13 @@
 <h5>
     Изменение данных о себе:
 </h5>
+{% if form.errors %}
+<p class="errorlist">
+    <strong>Формат изображение не соответствует заданному...<br>
+        <span style="font-size: 12px;">(Допустимые форматы: BMP, EPS, GIF, JPEG, PDF, PNG, PNM, TIFF)</span>
+    </strong>
+</p>
+{% endif %}
 <form action="" method="POST" enctype="multipart/form-data" style="width: 50%;">
     {% csrf_token %}
     {{form.as_p}}
