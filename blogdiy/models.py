@@ -47,6 +47,14 @@ class Blog(models.Model):
     date = models.DateTimeField(default=timezone.now, verbose_name='Дата')
     picture_blog = models.ImageField(verbose_name='Изображение', default='photo_blog/no-foto.gif', upload_to='photo_blog/')
 
+    def save(self, *args, **kwargs):
+        super().save()
+        img_root = Image.open(self.picture_blog.path)
+        if img_root.width > 766 or img_root.height > 423:
+            new_size = (766, 423)
+            img_root.thumbnail(new_size)
+            img_root.save(self.picture_blog.path)
+
     def __str__(self):
         return f'{self.title}'
 

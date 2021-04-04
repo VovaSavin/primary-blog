@@ -30,6 +30,11 @@
     </div>
     <hr>
     {% endfor %}
+    {% else %}
+    <p style="text-align: center;">
+        Нет ещё блогов на этом сайте &#128577;<br>
+        Хотите первым <a class="p-2 link-secondary" href="{% url 'create-blog' %}" style="text-decoration: none;">создать блог</a>?            
+    </p>
     {% endif %}
 </div>
 {% endblock %}

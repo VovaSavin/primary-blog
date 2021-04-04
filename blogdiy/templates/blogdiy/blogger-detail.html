@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
     <p class="lead">
-        <img class="bd-placeholder-img mr-2" width="55" height="55" src="{{ oneblogger.foto.url }}">
+        <img id="myphoto" class="bd-placeholder-img mr-2" width="75" height="75" src="{{ oneblogger.foto.url }}">
         <br>
         {{ oneblogger.name }} {{ oneblogger.surname }} ({{oneblogger.user}})<br>
         {% if request.user != oneblogger.user %}
@@ -45,5 +45,10 @@
     {% endfor %}
     {% endif %}
 </div>
+{% block js %}
+{% load static %}
+<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
 
+<script type="text/javascript" src={% static "blogdiy/JS/message.js" %}></script>
+{% endblock %}
 {% endblock %}
