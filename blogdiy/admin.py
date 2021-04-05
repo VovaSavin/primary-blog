@@ -3,6 +3,8 @@ from .models import (
     Blog,
     Bloger,
     Comments,
+    RaitingVal,
+    Raiting,
 )
 
 # Register your models here.
@@ -24,3 +26,14 @@ class CommentsAdmin(admin.ModelAdmin):
     '''Зарегистрировали модель Comments и расширим поля в админ странице'''
     list_display = ('author_comments', 'to_blog', 'date_comment')
 
+@admin.register(RaitingVal)
+class RaitingValAdmin(admin.ModelAdmin):
+    '''Значение рейтинга в админ панели'''
+    list_display = (
+        'val',
+        )
+
+@admin.register(Raiting)
+class RaitingAdmin(admin.ModelAdmin):
+    '''Таблица рейтинга в админ.панели'''
+    list_display = ('who_like', 'how_blog', 'value')

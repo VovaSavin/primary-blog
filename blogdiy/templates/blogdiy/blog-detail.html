@@ -12,7 +12,7 @@
         <img class="img-fluid" src="{{ oneblog.picture_blog.url }}" alt="{{ oneblog.title }}">
     </div>
     <br>
-    <p style="font-size: 14px;">
+    <p style="font-size: 14px; font-family: Comic Sans MS;">
         {{ oneblog.text_blog }}
     </p>
     <p class="small lh-125">
@@ -22,6 +22,9 @@
         </a>
         <br>
         {{ oneblog.date }}
+        <span class="fa fa-stars" style="display: block; float: right;">
+            <a href="#" class="btn btn-outline-warning btn-sm mr-5">+</a>
+        </span>
     </p>
     {% if oneblog.author_blog == request.user %}
     <a href="{% url 'delete-blog' oneblog.id %}">
@@ -45,9 +48,9 @@
             <a href="{{ comment.author_comments.bloger.get_absolute_url }}" style="text-decoration: none;">
                 <img class="bd-placeholder-img mr-2" width="25" height="25"
                     src="{{ comment.author_comments.bloger.foto.url }}">
-                <span class="small lh-125">{{ comment.author_comments }}</span><br>
+                <span class="small lh-125" style="opacity: 0.7;">{{ comment.author_comments }}</span><br>
             </a>
-            <span class="small lh-125">
+            <span class="small lh-125" style="opacity: 0.5;">
                 <strong>Дата публикации: </strong>{{ comment.date_comment }}
                 {% include 'blogdiy/comment-delete.html' %}
             </span>

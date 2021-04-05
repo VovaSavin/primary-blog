@@ -13,9 +13,9 @@
 
                 <span><img class="bd-placeholder-img mr-2" width="25" height="25"
                         src="{{ s.sender.bloger.foto.url }}"></span>
-                <span class="small lh-125">Вы:</span><br>
+                <span class="small lh-125" style="opacity: 0.4;">Вы:</span><br>
                 <span style="font-size: 14px;">{{ s.text_message }}</span><br>
-                <span style="font-size: 10px;">{{ s.date_message }}</span>
+                <span style="font-size: 10px; opacity: 0.4;">{{ s.date_message }}</span>
                 {% include 'messagesusers/message-delete.html' %}
             </div>
         </div><br>
@@ -24,9 +24,9 @@
             <div class="container-fluid mt-1 mb-3 my-mess-l shadow">
                 <span><img class="bd-placeholder-img mr-2" width="25" height="25"
                         src="{{ s.sender.bloger.foto.url }}"></span>
-                <span class="small lh-125">{{ s.sender }}:</span><br>
+                <span class="small lh-125" style="opacity: 0.4;">{{ s.sender }}:</span><br>
                 <span style="font-size: 14px;">{{ s.text_message }}</span><br>
-                <span style="font-size: 10px;">{{ s.date_message }}</span>
+                <span style="font-size: 10px; opacity: 0.4;">{{ s.date_message }}</span>
             </div>
         </div><br>
         {% endif %}

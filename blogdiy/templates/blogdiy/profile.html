@@ -26,18 +26,24 @@
     <p style="font-size: 14px;">
         {{ user.bloger.about|safe }}
     </p>
-    <div class="container">        
+    <div class="container">
         <div class="dropdown">
-          <button class="btn btn-outline-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Курсы валют
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="my-id">
-            <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{dollar}}</span></li><hr>
-            <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{euro}}</span></li><hr>
-            <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{rubl}}</span></li><hr>
-            <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{zloty}}</span></li>    
-          </ul>
+            <button class="btn btn-outline-primary dropdown-toggle" id="menu1" type="button"
+                data-toggle="dropdown">Курсы валют
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="my-id">
+                <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{dollar}}</span>
+                </li>
+                <hr>
+                <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{euro}}</span></li>
+                <hr>
+                <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{rubl}}</span></li>
+                <hr>
+                <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{zloty}}</span>
+                </li>
+            </ul>
         </div>
-      </div>
+    </div>
 </div>
 {% else %}
 <div class="container-fluid">

@@ -6,7 +6,7 @@ $('body').on('click', '.for-delete_message', function (event) {
     if (confirm('Вы уверены?')) {
         alert('Сообщение удалено!');
     } else {
-        alert('Не удалено!');
+        alert('Сообщение не удалено!');
         return false;
     }
 });
@@ -16,7 +16,12 @@ $('body').on('click', '.b-comment', function (event) {
 });
 
 $('body').on('click', '.comment-custom', function (event) {
-    alert(confirm('Вы уверены?'));
+    if (confirm('Вы уверены?')) {
+        alert('Комментарий удалён!');
+    } else {
+        alert('Комментарий не удалён!');
+        return false;
+    }
 });
 
 
