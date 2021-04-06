@@ -36,4 +36,4 @@ class RaitingValAdmin(admin.ModelAdmin):
 @admin.register(Raiting)
 class RaitingAdmin(admin.ModelAdmin):
     '''Таблица рейтинга в админ.панели'''
-    list_display = ('who_like', 'how_blog', 'value')
+    list_display = ('who_like', 'how_blog')

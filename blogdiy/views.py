@@ -3,12 +3,16 @@ from .models import (
     Blog,
     Bloger,
     Comments,
+    RaitingVal,
+    Raiting,
 )
 from .forms import (
     EditProfile,
     EditBlogerProfile,
     CommentsForm,
     ImageLoadForm,
+    RaitingForm,
+    RaitingValForm,
 )
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import (
@@ -22,6 +26,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.core.exceptions import ValidationError
+from django.views import View
 
 import monobankua
 
@@ -134,7 +139,6 @@ class BlogerDetail(DetailView):
     template_name = 'blogdiy/blogger-detail.html'
     context_object_name = 'oneblogger'
 
-
     def get_context_data(self, **kwargs):
         context = super(BlogerDetail, self).get_context_data(**kwargs)
         context['title'] = Bloger.objects.get(pk=self.kwargs['pk'])
@@ -242,5 +246,15 @@ def edit_profile_info(request):
     return render(request, 'blogdiy/create-blogger.html', context)
 
 
-class UpdateProfile(UpdateView):
-    pass
+class RaitingToBlog(LoginRequiredMixin ,View):
+    '''Класс для рейтинга блогов'''
+
+    def post(self, request, pk, *args):
+        '''
+        Отправка post запроса и создание обьекта Raiting
+        для блога с id=pk, текущим пользователем
+        '''
+        who = self.request.user
+        whom = Blog.objects.get(id=pk)
+        Raiting.objects.get_or_create(who_like=who, how_blog=whom)
+        return redirect(reverse_lazy('blogs-detail', args=[str(pk)]))

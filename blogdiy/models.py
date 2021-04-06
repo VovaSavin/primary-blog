@@ -88,7 +88,7 @@ class RaitingVal(models.Model):
     val = models.SmallIntegerField(verbose_name='Значение рейтинга', default=0)
 
     def __str__(self):
-        return self.val
+        return f'{self.val}'
     
     class Meta:
         verbose_name = 'Значение рейтинга'
@@ -98,7 +98,6 @@ class Raiting(models.Model):
     '''Сам рейтинг'''
     who_like = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто')
     how_blog = models.ForeignKey(Blog, on_delete=models.CASCADE, verbose_name='Какой блог')
-    value = models.ForeignKey(RaitingVal, on_delete=models.CASCADE, verbose_name='Значение')
 
     def __str__(self):
         return f'{self.who_like}->{self.how_blog}'
