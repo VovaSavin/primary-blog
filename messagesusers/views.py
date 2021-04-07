@@ -137,7 +137,7 @@ class MessageCreate(LoginRequiredMixin, CreateView):
         form.instance.sender = self.request.user
         if form.instance.addressee == self.request.user:
             raise ValidationError(
-                'Вы не можете отправить сообщение самому себе!')
+                'Вы не можете отправить сообщение самому себе!') # Обработать вывод инфо об ошибке на страницу!!!
         form.instance.date_message = timezone.now()
         return super().form_valid(form)
 
