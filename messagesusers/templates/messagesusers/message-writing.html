@@ -7,7 +7,11 @@
 <h5>
     Отправить сообщение:
 </h5>
-
+{% if form.errors %}
+<p class="errorlist">
+    Убедитесь в корректности заполнения формы
+</p>
+{% endif %}
 <form action="" method="POST" class="form-label">
     {% csrf_token %}
     {{form.as_p}}
