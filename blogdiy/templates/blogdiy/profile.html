@@ -23,28 +23,24 @@
     <p class="small lh-125">
         Возраст: {% if user.bloger.age %} {{ user.bloger.age }} {% else %} не указан {% endif %}
     </p>
-    <p style="font-size: 14px;">
-        {{ user.bloger.about|safe }}
-    </p>
-    <div class="container">
-        <div class="dropdown">
-            <button class="btn btn-outline-primary dropdown-toggle" id="menu1" type="button"
-                data-toggle="dropdown" style="margin: 4px;">Курсы валют
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="my-id">
-                <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{dollar}}</span>
-                </li>
-                <hr>
-                <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{euro}}</span></li>
-                <hr>
-                <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{rubl}}</span></li>
-                <hr>
-                <li role="presentation"><span role="menuitem" tabindex="2" style="font-size: 12px;">{{zloty}}</span>
-                </li>
-            </ul>
-        </div>
+    <a type="info" id="openinfo" href="#" onclick="showInfo (this)"
+        style="font-size: small; text-decoration: none;">Детальная
+        информация</a>
+    <div id="aboutme" style="display: none;">
+        <p style="font-size: 14px; width: 40%;">
+            {{ user.bloger.about|safe }}
+        </p>
+        <a type="info" class="content_toggle" href="#" onclick="hiddenInfo (this)"
+            style="font-size: small; text-decoration: none;">Скрыть информацию</a>
     </div>
 </div>
+{% if messages %}
+{% for m in messages %}
+<div class="alert alert-info" style="text-align:center; width: 70%;">
+    {{ m }}
+</div>
+{% endfor %}
+{% endif %}
 {% else %}
 <div class="container-fluid">
     <p style="text-align: center;">

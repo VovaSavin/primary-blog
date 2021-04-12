@@ -5,7 +5,7 @@ body {
 
 aside {
 	width: 18%;
-	min-height: inherit;
+	height: inherit;
 	margin: 5px;
 	padding-right: 5px;
 	float: left;

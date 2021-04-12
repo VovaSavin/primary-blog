@@ -27,24 +27,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.views import View
+from django.contrib import messages
 
-import monobankua
+
 
 
 # Create your views here.
-
-def index(request):
-    mono = monobankua.Monobank.currencies_info()
-    mono = mono[:5]
-    mono_d, mono_e, mono_r, mono_ed, mono_z = mono[0], mono[1], mono[2], mono[3], mono[4]
-    context = {
-        'dollar': mono_d,
-        'euro': mono_e,
-        'rubl': mono_r,
-        'dollareuro': mono_ed,
-        'zloty': mono_z,
-    }
-    return render(request, 'blogdiy/index.html', context)
 
 
 def main_page(request):
@@ -71,7 +59,7 @@ class BlogsList(ListView):
         return context
 
 
-class BlogsDetail(DetailView, FormMixin):
+class BlogsDetail(DetailView, FormMixin, View):
     '''Отображение конкретного блога'''
     model = Blog
     template_name = 'blogdiy/blog-detail.html'
@@ -98,9 +86,14 @@ class BlogsDetail(DetailView, FormMixin):
         self.object.save()
         return super().form_valid(form)
 
+
+
     def get_context_data(self, **kwargs):
         context = super(BlogsDetail, self).get_context_data(**kwargs)
         context['title'] = Blog.objects.get(pk=self.kwargs['pk'])
+        num_visit = self.request.session.get('num_visit', 0)
+        self.request.session['num_visit'] = num_visit + 1
+        context['num_visit'] = num_visit
         return context
 
 
@@ -179,29 +172,13 @@ class DeleteBlog(UserPassesTestMixin, DeleteView):
         return context
 
 
-def currency_count():
-    mono = monobankua.Monobank.currencies_info()
-    mono = mono[:5]
-    my_currency = []
-    for m in mono:
-        my_currency.append(m)
-    return my_currency
-
-
 @login_required
 def my_pofile(request):
     '''Профиль пользователя/блоггера'''
-    mono = monobankua.Monobank.currencies_info()
-    mono = mono[:5]
-    mono_d, mono_e, mono_r, mono_ed, mono_z = mono[0], mono[1], mono[2], mono[3], mono[4]
     context = {
         'title': 'Кабинет пользователя',
-        'dollar': mono_d,
-        'euro': mono_e,
-        'rubl': mono_r,
-        'dollareuro': mono_ed,
-        'zloty': mono_z,
     }
+    
     return render(request, 'blogdiy/profile.html', context)
 
 
@@ -228,6 +205,7 @@ def edit_profile_info(request):
             surname = forms.cleaned_data.get('surname')
             age = forms.cleaned_data.get('age')
             about = forms.cleaned_data.get('about')
+            messages.success(request, f'Изменения внесены!')
             return redirect(reverse_lazy('profile'))
     else:
         forms = EditProfile(instance=request.user)
@@ -254,7 +232,7 @@ class RaitingToBlog(LoginRequiredMixin ,View):
         Отправка post запроса и создание обьекта Raiting
         для блога с id=pk, текущим пользователем
         '''
-        #print(request.META)
+        
         who = self.request.user
         whom = Blog.objects.get(id=pk)
         Raiting.objects.get_or_create(who_like=who, how_blog=whom)

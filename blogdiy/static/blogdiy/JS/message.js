@@ -35,7 +35,12 @@ myphoto.onclick = function () {
     }
 };
 
-$(document).ready(function () {
-    $(".dropdown-toggle").dropdown();
-});
+function showInfo(info) {
+    document.getElementById("aboutme").style.display = "block";
+    document.getElementById("openinfo").style.display = "none";
+};
 
+function hiddenInfo(infohidden) {
+    document.getElementById("aboutme").style.display = "none";
+    document.getElementById("openinfo").style.display = "block";
+};

@@ -21,13 +21,27 @@
         Возраст: {{ oneblogger.age }}
     </p>
     {% if oneblogger.about %}
-    <p style="font-size: 14px;">
-        {{ oneblogger.about|safe }}
-    </p>
+    <a type="info" id="openinfo" href="#" onclick="showInfo (this)"
+        style="font-size: small; text-decoration: none;">Детальная
+        информация</a>
+    <div id="aboutme" style="display: none;">
+        <p style="font-size: 14px; width: 40%;">
+            {{ oneblogger.about|safe }}
+        </p>
+        <a type="info" class="content_toggle" href="#" onclick="hiddenInfo (this)"
+            style="font-size: small; text-decoration: none;">Скрыть информацию</a>
+    </div>
     {% else %}
-    <p style="font-size: 14px;">
-        Нет информации о пользователе
-    </p>
+    <a type="info" class="content_toggle" href="#" onclick="showInfo (this)"
+        style="font-size: small; text-decoration: none;">Детальная
+        информация</a>
+    <div id="aboutme" style="display: none;">
+        <p style="font-size: 14px; width: 40%;">
+            Нет информации о пользователе
+        </p>
+        <a type="info" class="content_toggle" href="#" onclick="hiddenInfo (this)"
+            style="font-size: small; text-decoration: none;">Скрыть информацию</a>
+    </div>
     {% endif %}
 
 </div>
