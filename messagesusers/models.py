@@ -19,6 +19,9 @@ class MessagesBetweenUsers(models.Model):
     def __str__(self):
         return f'{self.sender} к {self.addressee}'
 
+    def get_absolute_url(self):
+        return reverse('your-messages-user', args=[str(self.addressee)])
+
     class Meta:
         verbose_name = 'Сообщение'
         verbose_name_plural = 'Сообщения'

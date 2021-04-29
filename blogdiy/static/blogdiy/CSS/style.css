@@ -147,3 +147,8 @@ img.bd-placeholder-img {
 	float: none;
 	transform: none;
 }
+
+#showmeblog {
+	display: none;
+	transition: all 1.8s;
+}

@@ -13,9 +13,13 @@
         <img class="img-fluid" src="{{ oneblog.picture_blog.url }}" alt="{{ oneblog.title }}">
     </div>
     <br>
-    <p style="font-size: 14px; font-family: Comic Sans MS;">
-        {{ oneblog.text_blog }}
-    </p>
+    <a id="show" href="#" style="font-size: small; text-decoration: none;" type="blog" onclick="showBlog(this)">Развернуть</a>
+    <a id="hide" href="#" style="font-size: small; text-decoration: none; display: none;" type="bloghidden" onclick="hiddenBlog(this)">Скрыть</a>
+    <div id="showmeblog">
+        <p style="font-size: 14px; font-family: Comic Sans MS;">
+            {{ oneblog.text_blog }}
+        </p>
+    </div>
     <div class="container-fluid mt-1" style="height: 50px;">
         <div class="container" style="max-width: 60%; float: left;">
             <p class="small lh-125">

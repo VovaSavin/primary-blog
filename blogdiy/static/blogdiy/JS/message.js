@@ -44,3 +44,15 @@ function hiddenInfo(infohidden) {
     document.getElementById("aboutme").style.display = "none";
     document.getElementById("openinfo").style.display = "block";
 };
+
+function showBlog(blog) {
+    document.getElementById("showmeblog").style.display = "block";
+    document.getElementById("show").style.display = "none";
+    document.getElementById("hide").style.display = "block";
+};
+
+function hiddenBlog(bloghidden) {
+    document.getElementById("showmeblog").style.display = "none";
+    document.getElementById("show").style.display = "block";
+    document.getElementById("hide").style.display = "none";
+};

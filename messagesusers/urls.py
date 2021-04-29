@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:pk>', views.MessageDetail.as_view(), name='one-message'),
     path('<str:username>', views.MessagesListUsers.as_view(), name='your-messages-user'),
     path('<int:pk>/<slug:type>', views.message_delete, name='delete-message'),
+    
 ]

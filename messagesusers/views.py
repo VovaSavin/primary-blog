@@ -15,8 +15,8 @@ from django.core.exceptions import ValidationError
 
 
 
-# Create your views here.
 
+# Create your views here.
 
 class MessagesList(LoginRequiredMixin, ListView):
     '''Отображение всех сообщений для пользователя'''
@@ -41,6 +41,7 @@ class MessagesInboxList(LoginRequiredMixin, ListView):
     model = MessagesBetweenUsers
     context_object_name = 'sms'
     template_name = 'messagesusers/message-list.html'
+
 
     def get_queryset(self):
         return MessagesBetweenUsers.objects.filter(addressee=self.request.user).order_by('-date_message')
@@ -78,6 +79,7 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
     def get_success_url(self, **kwargs):
         return reverse_lazy('your-messages-user', kwargs={'username': self.kwargs.get('username')})
 
+
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid:
@@ -107,9 +109,23 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
         return my_sent | my_received.order_by('date_message')
         #return super().get_queryset() Реализовать переадресацию, что бы текущий пользователь не мог переписываться сам с собой.
 
+
     def get_context_data(self, **kwargs):
         context = super(MessagesListUsers, self).get_context_data(**kwargs)
         context['title'] = f'Диалог с {get_object_or_404(User, username=self.kwargs.get("username"))}'
+        i_message = MessagesBetweenUsers.objects.filter(sender=self.request.user)
+        me_message = MessagesBetweenUsers.objects.filter(addressee=self.request.user)
+        friends = set()
+        for x in i_message:
+            friends.add(x.addressee)
+        for y in me_message:
+            friends.add(y.sender)
+        context['frnds'] = friends
+        all_message = i_message | me_message.order_by('date_message')
+        messages_my = set()
+        for z in all_message:
+            messages_my.add(z.text_message)
+        context['allmsgs'] = messages_my
         return context
 
 
@@ -155,3 +171,5 @@ def message_delete(request, pk, type, *args):
         'message': my_messages,
     }
     return render(request, 'messagesusers/message-delete.html', context)
+
+

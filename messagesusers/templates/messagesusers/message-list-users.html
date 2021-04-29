@@ -48,4 +48,14 @@
     <script type="text/javascript" src={% static "blogdiy/JS/message.js" %}></script>
     {% endblock %}
 </div>
+<div class="container-fluid scrolling" style="float: right; width: 20%;">
+    {% for fr in frnds %}
+    <div class="container-fluid mt-3">
+        <a href="{% url 'your-messages-user' fr %}" style="text-decoration: none;">
+            {{fr}}
+    </div>
+    <hr>
+    <br>
+    {% endfor %}
+</div>
 {% endblock %}
