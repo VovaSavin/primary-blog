@@ -121,11 +121,6 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
         for y in me_message:
             friends.add(y.sender)
         context['frnds'] = friends
-        all_message = i_message | me_message.order_by('date_message')
-        messages_my = set()
-        for z in all_message:
-            messages_my.add(z.text_message)
-        context['allmsgs'] = messages_my
         return context
 
 
