@@ -103,9 +103,9 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
         my_sender = get_object_or_404(
             User, username=self.kwargs.get('username'))
         my_sent = MessagesBetweenUsers.objects.filter(
-            sender=self.request.user).filter(addressee=my_recepient)
+            sender=self.request.user, addressee=my_recepient).select_related('sender', 'addressee')
         my_received = MessagesBetweenUsers.objects.filter(
-            addressee=self.request.user).filter(sender=my_sender)
+            addressee=self.request.user, sender=my_sender).select_related('addressee', 'sender')
         return my_sent | my_received.order_by('date_message')
         #return super().get_queryset() Реализовать переадресацию, что бы текущий пользователь не мог переписываться сам с собой.
 
@@ -113,8 +113,8 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
     def get_context_data(self, **kwargs):
         context = super(MessagesListUsers, self).get_context_data(**kwargs)
         context['title'] = f'Диалог с {get_object_or_404(User, username=self.kwargs.get("username"))}'
-        i_message = MessagesBetweenUsers.objects.filter(sender=self.request.user)
-        me_message = MessagesBetweenUsers.objects.filter(addressee=self.request.user)
+        i_message = MessagesBetweenUsers.objects.filter(sender=self.request.user).select_related('addressee')
+        me_message = MessagesBetweenUsers.objects.filter(addressee=self.request.user).select_related('sender')
         friends = set()
         for x in i_message:
             friends.add(x.addressee)

@@ -51,7 +51,7 @@ class BlogsList(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return Blog.objects.all().order_by('-date')
+        return Blog.objects.all().order_by('-date').select_related('author_blog')
 
     def get_context_data(self, **kwargs):
         context = super(BlogsList, self).get_context_data(**kwargs)
@@ -119,6 +119,9 @@ class BlogerList(ListView):
     template_name = 'blogdiy/blogger-list.html'
     context_object_name = 'bloggers'
     paginate_by = 5
+
+    def get_queryset(self):
+        return Bloger.objects.all().select_related('user').prefetch_related()
 
     def get_context_data(self, **kwargs):
         context = super(BlogerList, self).get_context_data(**kwargs)

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'registrationonly.apps.RegistrationonlyConfig',
     'messagesusers.apps.MessagesusersConfig',
     'other.apps.OtherConfig',
+    'silk',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'custom.urls'
