@@ -24,7 +24,6 @@ urlpatterns = [
     path('registration/', include('registrationonly.urls')),
     path('yourmessage/', include('messagesusers.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('silk/', include('silk.urls', namespace='silk')),
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 
 if settings.DEBUG:

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Bloger, Comments, Raiting, RaitingVal
+from .models import Bloger, Comments, Raiting
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
@@ -95,8 +95,3 @@ class RaitingForm(forms.ModelForm):
     class Meta:
         model = Raiting
         fields = ['who_like','how_blog']
-
-class RaitingValForm(forms.ModelForm):
-    class Meta:
-        model = RaitingVal
-        fields = ['val',]

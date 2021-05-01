@@ -3,7 +3,6 @@ from .models import (
     Blog,
     Bloger,
     Comments,
-    RaitingVal,
     Raiting,
 )
 from .forms import (
@@ -12,7 +11,6 @@ from .forms import (
     CommentsForm,
     ImageLoadForm,
     RaitingForm,
-    RaitingValForm,
 )
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import (
@@ -91,9 +89,9 @@ class BlogsDetail(DetailView, FormMixin, View):
     def get_context_data(self, **kwargs):
         context = super(BlogsDetail, self).get_context_data(**kwargs)
         context['title'] = Blog.objects.get(pk=self.kwargs['pk'])
-        num_visit = self.request.session.get('num_visit', 0)
-        self.request.session['num_visit'] = num_visit + 1
-        context['num_visit'] = num_visit
+        # num_visit = self.request.session.get('num_visit', 0)
+        # self.request.session['num_visit'] = num_visit + 1
+        # context['num_visit'] = num_visit
         return context
 
 

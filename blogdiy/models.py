@@ -82,17 +82,7 @@ class Comments(models.Model):
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
         ordering = ['-date_comment']
-
-class RaitingVal(models.Model):
-    '''Числовые значения рейтинга записей'''
-    val = models.SmallIntegerField(verbose_name='Значение рейтинга', default=0)
-
-    def __str__(self):
-        return f'{self.val}'
-    
-    class Meta:
-        verbose_name = 'Значение рейтинга'
-        verbose_name_plural = 'Значение рейтинга' 
+ 
 
 class Raiting(models.Model):
     '''Сам рейтинг'''

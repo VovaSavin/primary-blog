@@ -1,0 +1,24 @@
+{% for b in lastblog %}
+    <div class="container-fluid pb-1 mr-2">
+        <a href="{% url 'blogs-detail' b.id %}">{{ b.title }}</a>
+        <br>
+        <div class="container-fluid" style="text-align: center;">
+            <img class="img-fluid" width="350" height="195" src="{{ b.picture_blog.url }}" alt="{{ b.title }}">
+        </div>
+        <div class="container" style="font-size: 14px;">
+            <p>
+                {{b.text_blog|truncatechars:100}}
+            </p>
+            <span class="small lh-125" style="float: left;">
+                {{ b.date }}
+            </span>
+            <br>
+            <div style="overflow: auto;">
+                <div style="float: left;">
+                    <a href="{% url 'blogs-detail' b.id %}" class="small lh-125">Посмотреть...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+{% endfor %}

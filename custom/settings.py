@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'blogdiy.apps.BlogdiyConfig',
     'registrationonly.apps.RegistrationonlyConfig',
     'messagesusers.apps.MessagesusersConfig',
-    'other.apps.OtherConfig',
-    'silk',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'custom.urls'
@@ -134,4 +131,14 @@ MEDIA_URL = '/pictures/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures')
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'volodimirsavin56@gmail.com'
+# EMAIL_HOST_PASSWORD = 'ulmbpeiarzelzewh'
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'ulmbpeiarzelzewh')
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

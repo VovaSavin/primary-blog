@@ -48,10 +48,12 @@
     <script type="text/javascript" src={% static "blogdiy/JS/message.js" %}></script>
     {% endblock %}
 </div>
-<div class="container-fluid scrolling" style="float: right; width: 20%;">
+<div class="container-fluid scrolling" style="float: right; width: 20%; background-color: #ecfffe;">
     {% for fr in frnds %}
-    <div class="container-fluid mt-3">
+    <div class="container-fluid mt-3 my-mess-letters shadow">
         <a href="{% url 'your-messages-user' fr %}" style="text-decoration: none;">
+            <span><img class="bd-placeholder-img mr-2" width="25" height="25"
+                src="{{ fr.bloger.foto.url }}"></span>
             {{fr}}
         </a>
     </div>

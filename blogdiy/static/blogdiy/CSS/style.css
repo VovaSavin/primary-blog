@@ -10,6 +10,7 @@ aside {
 	padding-right: 5px;
 	float: left;
 	text-align: center;
+	border-right: 1px solid #4596e7;
 }
 
 main {
@@ -103,7 +104,7 @@ img.bd-placeholder-img {
 	max-height: 470px;
 }
 
-.my-mess-l, .my-mess-r {
+.my-mess-l, .my-mess-r, .my-mess-letters {
 	display: block;
 	border-radius: 10px;
 	padding: 5px;
@@ -115,6 +116,10 @@ img.bd-placeholder-img {
 
 .my-mess-l {
 	background-color: rgb(174, 253, 194);
+}
+
+.my-mess-letters {
+	background-color: rgb(230, 247, 235);
 }
 
 .for-delete_message {
