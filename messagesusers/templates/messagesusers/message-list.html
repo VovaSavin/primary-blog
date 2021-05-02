@@ -31,4 +31,17 @@
     <p>У вас, пока что, нет сообщений.</p>
     {% endif %}
 </div>
+<div style="float: right; width: 25%;">
+    {% for y in alluser %}
+    {% for x in y.user_sender.all|slice:":1" %}
+    <p>
+        {% if x.addressee == request.user %}
+        {{x.sender}}
+        <br>
+        {{x.text_message}}
+        {% endif %}
+    </p>
+    {% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}

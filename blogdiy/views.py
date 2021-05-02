@@ -89,9 +89,6 @@ class BlogsDetail(DetailView, FormMixin, View):
     def get_context_data(self, **kwargs):
         context = super(BlogsDetail, self).get_context_data(**kwargs)
         context['title'] = Blog.objects.get(pk=self.kwargs['pk'])
-        # num_visit = self.request.session.get('num_visit', 0)
-        # self.request.session['num_visit'] = num_visit + 1
-        # context['num_visit'] = num_visit
         return context
 
 
@@ -119,7 +116,7 @@ class BlogerList(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return Bloger.objects.all().select_related('user').prefetch_related()
+        return Bloger.objects.all().select_related('user')
 
     def get_context_data(self, **kwargs):
         context = super(BlogerList, self).get_context_data(**kwargs)

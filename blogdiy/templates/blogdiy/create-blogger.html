@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block main %}
-<h5>
+<h5 style="padding-left: 10px;">
     Изменение данных о себе:
 </h5>
 {% if form.errors %}
@@ -14,7 +14,7 @@
     </strong>
 </p>
 {% endif %}
-<form action="" method="POST" enctype="multipart/form-data" style="width: 50%;">
+<form action="" method="POST" enctype="multipart/form-data" style="width: 50%; padding-left: 10px;">
     {% csrf_token %}
     {{form.as_p}}
     {{form2.as_p}}
