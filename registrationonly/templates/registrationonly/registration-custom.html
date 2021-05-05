@@ -11,7 +11,7 @@
 </p>
 {% else %}
 
-<form method="post" action="" style="width: 50%;">
+<form method="post" action="" style="width: 50%; padding-left: 10px;">
     {% csrf_token %}
     {{forms.as_p}}
     <input type="submit" value="Создать аккаунт" class="btn btn-success" />

@@ -12,3 +12,4 @@ class MessagesBetweenUsersAdmin(admin.ModelAdmin):
     и расположение её полей
     '''
     list_display = ['sender', 'addressee', 'text_message', 'date_message']
+    list_filter = ('sender', 'addressee')
