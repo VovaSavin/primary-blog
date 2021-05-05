@@ -134,7 +134,7 @@
                 {% block main %} {% endblock %}
             </div>
             {% block paginate %} {% if is_paginated %}
-            <div class="container-fluid mt-1 mb-1" style="float: left;">
+            <div class="pagination-message">
                 <span class="page-links">
                     {% if page_obj.has_previous %}
                     <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}" class="btn btn-outline-dark">
@@ -142,7 +142,7 @@
                     </a>
                     {% endif %}
                     {% if page_obj.has_next %}
-                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" class="ml-5 btn btn-outline-dark">
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" class="btn btn-outline-dark">
                         Следущая &rarr;
                     </a>
                     {% endif %}

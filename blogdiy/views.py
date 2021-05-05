@@ -26,6 +26,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.views import View
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 
@@ -40,8 +41,12 @@ def main_page(request):
     }
     return render(request, 'blogdiy/first.html', context)
 
+class GetBlogger:
+    """Получить список пользователей"""
+    def get_blogers(self):
+        return User.objects.all()
 
-class BlogsList(ListView):
+class BlogsList(GetBlogger, ListView):
     '''Список всех блогов'''
     model = Blog
     template_name = 'blogdiy/blog-list.html'
@@ -57,7 +62,7 @@ class BlogsList(ListView):
         return context
 
 
-class BlogsDetail(DetailView, FormMixin, View):
+class BlogsDetail(GetBlogger, DetailView, FormMixin, View):
     '''Отображение конкретного блога'''
     model = Blog
     template_name = 'blogdiy/blog-detail.html'
@@ -235,3 +240,17 @@ class RaitingToBlog(LoginRequiredMixin ,View):
         whom = Blog.objects.get(id=pk)
         Raiting.objects.get_or_create(who_like=who, how_blog=whom)
         return redirect(reverse_lazy('blogs-detail', args=[str(pk)]))
+
+
+class FilterBlog(GetBlogger, ListView):
+    """Класс для фильтра блогов по блоггерам"""
+
+    template_name = 'blogdiy/blog-list.html'
+    context_object_name = 'blogs'
+
+    def get_queryset(self):
+        """
+        Вернёт отфильтрованный список по полю author_blog
+        """
+        qwset = Blog.objects.filter(author_blog__in=self.request.GET.getlist("author_blog")).order_by('-date')
+        return qwset

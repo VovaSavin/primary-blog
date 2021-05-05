@@ -3,6 +3,16 @@
 {{ title }}
 {% endblock %}
 {% block main %}
+<div class="sort">
+    <form class="sort" action="{% url 'filter' %}" method="GET">
+    {% for x in view.get_blogers %}
+        <input type="checkbox" name="author_blog" value="{{x.id}}">
+        <img class="bd-placeholder-img" width="25" height="25" src="{{ x.bloger.foto.url }}">
+        <span class="small lh-125" style="padding: 1%;">{{x.username}}</span>
+    {% endfor %}
+    <button class="btn btn-info" type="submit">Найти</button>
+    </form>
+</div>
 <div class="container-fluid" style="width: 70%; float: left; padding: 10px; margin: 10px;">
     {% if blogs %}
     {% for b in blogs %}

@@ -19,12 +19,12 @@
         <span style="font-weight: bold;">Вам сообщение от: </span><span>{{ s.sender }}</span>
         <p class="small lh-125">Дата: {{ s.date_message }}</p>
         <p class="ml-4 lead">{{s.text_message|truncatechars:40}}</p>
-        <a href="{% url 'your-messages-user' s.sender %}" class="small lh-125">Переписка</a>
+        <a href="{% url 'your-messages-user' s.sender %}" class="small lh-125">Перейти к переписке</a>
         {% elif s.sender == request.user %}
         <span style="font-weight: bold;">Ваше сообщение к: </span><span>{{ s.addressee }}</span>
         <p class="small lh-125">Дата: {{ s.date_message }}</p>
         <p class="ml-4 lead">{{s.text_message|truncatechars:40}}</p>
-        <a href="{% url 'your-messages-user' s.addressee %}" class="small lh-125">Переписка</a>
+        <a href="{% url 'your-messages-user' s.addressee %}" class="small lh-125">Перейти к переписке</a>
         {% endif %}
     </div>
     <hr>

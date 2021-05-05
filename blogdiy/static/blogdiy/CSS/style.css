@@ -22,6 +22,16 @@ main {
 	float: right;
 }
 
+.pagination-message {
+	width: 70%;
+	display: flex;
+}
+
+.page-links {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
 label {
 	font-size: 14px;
 }
@@ -90,6 +100,12 @@ img.bd-placeholder-img {
 
 .custom-specblog {
 	padding: 10px;
+}
+
+.sort {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .shadow {
