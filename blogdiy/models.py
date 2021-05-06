@@ -45,7 +45,8 @@ class Blog(models.Model):
         User, on_delete=models.CASCADE, verbose_name='Автор')
     text_blog = models.TextField(verbose_name='Описание')
     date = models.DateTimeField(default=timezone.now, verbose_name='Дата')
-    picture_blog = models.ImageField(verbose_name='Изображение', default='photo_blog/no-foto.gif', upload_to='photo_blog/')
+    picture_blog = models.ImageField(
+        verbose_name='Изображение', default='photo_blog/no-foto.gif', upload_to='photo_blog/')
 
     def save(self, *args, **kwargs):
         super().save()
@@ -82,16 +83,18 @@ class Comments(models.Model):
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
         ordering = ['-date_comment']
- 
+
 
 class Raiting(models.Model):
     '''Сам рейтинг'''
-    who_like = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто')
-    how_blog = models.ForeignKey(Blog, on_delete=models.CASCADE, verbose_name='Какой блог')
+    who_like = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='Кто')
+    how_blog = models.ForeignKey(
+        Blog, on_delete=models.CASCADE, verbose_name='Какой блог')
 
     def __str__(self):
         return f'{self.who_like}->{self.how_blog}'
 
     class Meta:
         verbose_name = 'Рейтинг блога'
-        verbose_name_plural = 'Рейтинг блога' 
+        verbose_name_plural = 'Рейтинг блога'

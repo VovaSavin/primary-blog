@@ -12,8 +12,10 @@
         <img class="img-fluid" src="{{ oneblog.picture_blog.url }}" alt="{{ oneblog.title }}">
     </div>
     <br>
-    <a id="show" href="#" style="font-size: small; text-decoration: none;" type="blog" onclick="showBlog(this)">Развернуть</a>
-    <a id="hide" href="#" style="font-size: small; text-decoration: none; display: none;" type="bloghidden" onclick="hiddenBlog(this)">Скрыть</a>
+    <a id="show" href="#" style="font-size: small; text-decoration: none;" type="blog" onclick="showBlog(this)">Показать
+        информацию</a>
+    <a id="hide" href="#" style="font-size: small; text-decoration: none; display: none;" type="bloghidden"
+        onclick="hiddenBlog(this)">Скрыть</a>
     <div id="showmeblog">
         <p style="font-size: 14px; font-family: Comic Sans MS;">
             {{ oneblog.text_blog }}
@@ -32,7 +34,7 @@
             </p>
         </div>
         <div style="float: right;">
-            <form action="{% url 'raiting-blog' oneblog.id %}" method="POST">
+            <form action="{% url 'raiting-blog' oneblog.id %}" method="POST" name="raiting">
                 {% csrf_token %}
                 {{formrait.as_p}}
                 <button type="submit" class="btn btn-outline-danger btn-sm">

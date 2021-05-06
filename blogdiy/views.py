@@ -29,8 +29,6 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 
-
-
 # Create your views here.
 
 
@@ -41,10 +39,13 @@ def main_page(request):
     }
     return render(request, 'blogdiy/first.html', context)
 
+
 class GetBlogger:
     """Получить список пользователей"""
+
     def get_blogers(self):
         return User.objects.all()
+
 
 class BlogsList(GetBlogger, ListView):
     '''Список всех блогов'''
@@ -88,8 +89,6 @@ class BlogsDetail(GetBlogger, DetailView, FormMixin, View):
         self.object.author_comments = self.request.user
         self.object.save()
         return super().form_valid(form)
-
-
 
     def get_context_data(self, **kwargs):
         context = super(BlogsDetail, self).get_context_data(**kwargs)
@@ -181,7 +180,7 @@ def my_pofile(request):
     context = {
         'title': 'Кабинет пользователя',
     }
-    
+
     return render(request, 'blogdiy/profile.html', context)
 
 
@@ -227,18 +226,26 @@ def edit_profile_info(request):
     return render(request, 'blogdiy/create-blogger.html', context)
 
 
-class RaitingToBlog(LoginRequiredMixin ,View):
+class RaitingToBlog(LoginRequiredMixin, View):
     '''Класс для рейтинга блогов'''
+
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        print(ip)
 
     def post(self, request, pk, *args):
         '''
         Отправка post запроса и создание обьекта Raiting
         для блога с id=pk, текущим пользователем
         '''
-        
         who = self.request.user
         whom = Blog.objects.get(id=pk)
         Raiting.objects.get_or_create(who_like=who, how_blog=whom)
+        self.get_client_ip(request)
         return redirect(reverse_lazy('blogs-detail', args=[str(pk)]))
 
 
@@ -252,5 +259,6 @@ class FilterBlog(GetBlogger, ListView):
         """
         Вернёт отфильтрованный список по полю author_blog
         """
-        qwset = Blog.objects.filter(author_blog__in=self.request.GET.getlist("author_blog")).order_by('-date')
+        qwset = Blog.objects.filter(
+            author_blog__in=self.request.GET.getlist("author_blog")).order_by('-date')
         return qwset
