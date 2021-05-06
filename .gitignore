@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 *.bak
 *.sqlite3
-.vscode/
+.vscode
