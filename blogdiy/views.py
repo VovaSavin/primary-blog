@@ -279,7 +279,7 @@ class SearchBlog(GetBlogger, ListView):
 
     template_name = 'blogdiy/blog-list.html'
     context_object_name = 'blogs'
-    paginate_by = 1
+    paginate_by = 2
 
     def get_queryset(self):
         """
