@@ -106,6 +106,7 @@ img.bd-placeholder-img {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	width: 100%;
 }
 
 .shadow {
@@ -172,6 +173,21 @@ img.bd-placeholder-img {
 #showmeblog {
 	display: none;
 	transition: all 1.8s;
+}
+
+#open-filter, #hide-filter {
+	font-size: 0.8em;
+	text-decoration: none;
+	margin-top: 1%;
+}
+
+#hide-filter {
+	display: none;
+}
+
+#all_filter {
+	display: none;
+	flex-direction: column;
 }
 
 .div_for_search {

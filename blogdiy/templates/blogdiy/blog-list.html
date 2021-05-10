@@ -3,25 +3,49 @@
 {{ title }}
 {% endblock %}
 {% block main %}
-<p>
-<form action="{% url 'search' %}" method="GET">
-    <div class="div_for_search">
-        <span class="span_for_search">Поиск:</span>
-        <input class="input_for_search" type="search" name="q" value="" required="">
-        <button class="btn btn-warning btn-sm" type="submit">Найти</button>
-    </div>
-</form>
-</p>
-<p>Выбор по авторам:</p>
-<div class="sort">
-    <form class="sort" action="{% url 'filter' %}" method="GET">
-        {% for x in view.get_blogers %}
-        <input type="checkbox" name="author_blog" value="{{x.id}}">
-        <img class="bd-placeholder-img ml-2" width="25" height="25" src="{{ x.bloger.foto.url }}">
-        <span class="small lh-125" style="padding: 1%;">{{x.username}}</span>
-        {% endfor %}
-        <button class="btn btn-info" type="submit">Найти</button>
+{% load static %}
+<div style="display: flex; justify-content: end; padding-right: 2%;">
+    <a id="open-filter" class="btn btn-outline-dark btn-sm" href="#" type="filtersOpen" onclick="showFilter(this)">
+        <span>
+            <img src="{% static 'blogdiy/IMG/fold-down.svg' %}" alt="fold-down">
+        </span>
+        Показать фильтры
+        <span>
+            <img src="{% static 'blogdiy/IMG/fold-down.svg' %}" alt="fold-down">
+        </span>
+    </a>
+
+    <a id="hide-filter" class="btn btn-outline-dark btn-sm" href="#" type="filtersClose" onclick="hideFilter(this)">
+        <span>
+            <img src="{% static 'blogdiy/IMG/fold-up.svg' %}" alt="fold-up">
+        </span>
+        Скрыть фильтры
+        <span>
+            <img src="{% static 'blogdiy/IMG/fold-up.svg' %}" alt="fold-up">
+        </span>
+    </a>
+</div>
+<div id="all_filter">
+    <p>
+    <form action="{% url 'search' %}" method="GET">
+        <div class="div_for_search">
+            <span class="span_for_search">Поиск:</span>
+            <input class="input_for_search" type="search" name="q" value="" required="">
+            <button class="btn btn-warning btn-sm" type="submit">Найти</button>
+        </div>
     </form>
+    </p>
+    <p>Выбор по авторам:</p>
+    <div class="sort">
+        <form class="sort" action="{% url 'filter' %}" method="GET">
+            {% for x in view.get_blogers %}
+            <input type="checkbox" name="author_blog" value="{{x.id}}">
+            <img class="bd-placeholder-img ml-2" width="25" height="25" src="{{ x.bloger.foto.url }}">
+            <span class="small lh-125" style="padding: 1%;">{{x.username}}</span>
+            {% endfor %}
+            <button class="btn btn-info" type="submit">Найти</button>
+        </form>
+    </div>
 </div>
 <hr>
 <div class="container-fluid" style="width: 70%; float: left; padding: 10px; margin: 10px;">
@@ -70,5 +94,11 @@
             style="text-decoration: none;">создать блог</a>?
     </p>
     {% endif %}
+    {% block js %}
+    {% load static %}
+    <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+
+    <script type="text/javascript" src={% static "blogdiy/JS/message.js" %}></script>
+    {% endblock %}
 </div>
 {% endblock %}

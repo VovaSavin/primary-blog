@@ -57,3 +57,14 @@ function hiddenBlog(bloghidden) {
     document.getElementById("hide").style.display = "none";
 };
 
+function hideFilter(filtersClose) {
+    document.getElementById("all_filter").style.display = "none";
+    document.getElementById("open-filter").style.display = "flex";
+    document.getElementById("hide-filter").style.display = "none";
+};
+
+function showFilter(filtersOpen) {
+    document.getElementById("all_filter").style.display = "flex";
+    document.getElementById("open-filter").style.display = "none";
+    document.getElementById("hide-filter").style.display = "flex";
+};
