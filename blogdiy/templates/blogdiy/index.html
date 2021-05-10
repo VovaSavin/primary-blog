@@ -143,22 +143,6 @@
             <div class="mb-1 mt-1" style="overflow: auto; width: 100%; height: 100%;">
                 {% block main %} {% endblock %}
             </div>
-            {% block paginate %} {% if is_paginated %}
-            <div class="pagination-message">
-                <span class="page-links">
-                    {% if page_obj.has_previous %}
-                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}" class="btn btn-outline-dark">
-                        &larr; Предыдущая
-                    </a>
-                    {% endif %}
-                    {% if page_obj.has_next %}
-                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" class="btn btn-outline-dark">
-                        Следущая &rarr;
-                    </a>
-                    {% endif %}
-                </span>
-            </div>
-            {% endif %} {% endblock %}
         </main>
     </div>
     <footer class="contaiber-fluid my-5 pt-5 text-muted text-center text-small">

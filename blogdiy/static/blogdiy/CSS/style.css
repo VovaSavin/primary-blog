@@ -173,3 +173,21 @@ img.bd-placeholder-img {
 	display: none;
 	transition: all 1.8s;
 }
+
+.div_for_search {
+	display: flex;
+	flex-direction: row;
+	padding-right: 1%;
+}
+
+.span_for_search {
+	font-size: 1.5em;
+	padding-right: 1%;
+}
+
+.input_for_search {
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	text-align: center;
+	width: 20%;
+}

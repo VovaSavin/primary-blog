@@ -3,6 +3,15 @@
 {{ title }}
 {% endblock %}
 {% block main %}
+<p>
+<form action="{% url 'search' %}" method="GET">
+    <div class="div_for_search">
+        <span class="span_for_search">Поиск:</span>
+        <input class="input_for_search" type="search" name="q" value="" required="">
+        <button class="btn btn-warning btn-sm" type="submit">Найти</button>
+    </div>
+</form>
+</p>
 <p>Выбор по авторам:</p>
 <div class="sort">
     <form class="sort" action="{% url 'filter' %}" method="GET">
@@ -53,6 +62,7 @@
     </div>
     <hr>
     {% endfor %}
+    {% include 'include/pagination.html' %}
     {% else %}
     <p style="text-align: center;">
         Нет ещё блогов на этом сайте &#128577;<br>

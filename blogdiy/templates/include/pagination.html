@@ -1,0 +1,31 @@
+{% if is_paginated %}
+<div style="display: flex; width: 40%;">
+    {% if page_obj.has_previous %}
+    {% if page_obj.number|add:'-3' > 1 %}
+    <a class="ml-2 btn btn-outline-primary btn-sm" href="?{{q}}{{author_blog}}page=1">В начало</a>
+    {% endif %}
+    {% if page_obj.number|add:'-3' >= 3 %}
+    <a class="ml-2" href="?{{q}}{{author_blog}}page={{ page_obj.previous_page_number|add:'-3' }}">...</a>
+    {% endif %}
+    {% endif %}
+    {% if paginator.page_range|length > 1 %}
+    {% for x in paginator.page_range %}
+    {% if page_obj.number == x %}
+    <a class="ml-2" href="#">{{x}}</a>
+    {% elif x > page_obj.number|add:'-4' and x < page_obj.number|add:'4' %} <a class="ml-2"
+        href="?{{q}}{{author_blog}}page={{x}}">{{x}}</a>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% if page_obj.has_next %}
+        {% if page_obj.number|add:'4' < page_obj.paginator.num_pages %} <a class="ml-2"
+            href="?{{q}}{{author_blog}}page={{ page_obj.next_page_number|add:'3' }}">...</a>
+            {% endif %}
+            {% if page_obj.number|add:'3' < page_obj.paginator.num_pages %} <a
+                class="ml-2 btn btn-outline-primary btn-sm"
+                href="?{{q}}{{author_blog}}page={{page_obj.paginator.num_pages}}">
+                Последняя</a>
+                {% endif %}
+                {% endif %}
+</div>
+{% endif %}

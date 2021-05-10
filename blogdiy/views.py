@@ -52,7 +52,7 @@ class BlogsList(GetBlogger, ListView):
     model = Blog
     template_name = 'blogdiy/blog-list.html'
     context_object_name = 'blogs'
-    paginate_by = 5
+    paginate_by = 2
 
     def get_queryset(self):
         return Blog.objects.all().order_by('-date').select_related('author_blog')
@@ -230,6 +230,7 @@ class RaitingToBlog(LoginRequiredMixin, View):
     '''Класс для рейтинга блогов'''
 
     def get_client_ip(self, request):
+        """Метод для IP пользователя"""
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip = x_forwarded_for.split(',')[0]
@@ -254,6 +255,7 @@ class FilterBlog(GetBlogger, ListView):
 
     template_name = 'blogdiy/blog-list.html'
     context_object_name = 'blogs'
+    paginate_by = 2
 
     def get_queryset(self):
         """
@@ -262,3 +264,34 @@ class FilterBlog(GetBlogger, ListView):
         qwset = Blog.objects.filter(
             author_blog__in=self.request.GET.getlist("author_blog")).order_by('-date')
         return qwset
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['author_blog'] = ''.join(
+            [f'author_blog={x}&' for x in self.request.GET.getlist(
+                'author_blog')]
+        )
+        return context
+
+
+class SearchBlog(GetBlogger, ListView):
+    """Поиск по полю title без учёта регистра"""
+
+    template_name = 'blogdiy/blog-list.html'
+    context_object_name = 'blogs'
+    paginate_by = 1
+
+    def get_queryset(self):
+        """
+        Вернёт отфильтрованный список по полю title
+        С поля ввода с атрибутом name=q
+        """
+        searching_qset = Blog.objects.filter(
+            title__icontains=self.request.GET.get("q")
+        ).order_by('-date')
+        return searching_qset
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["q"] = f'q={self.request.GET.get("q")}&'
+        return context
