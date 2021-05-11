@@ -14,8 +14,6 @@ from django.db.models import Q
 from django.core.exceptions import ValidationError
 
 
-
-
 # Create your views here.
 
 class MessagesList(LoginRequiredMixin, ListView):
@@ -41,7 +39,6 @@ class MessagesInboxList(LoginRequiredMixin, ListView):
     model = MessagesBetweenUsers
     context_object_name = 'sms'
     template_name = 'messagesusers/message-list.html'
-
 
     def get_queryset(self):
         return MessagesBetweenUsers.objects.filter(addressee=self.request.user).order_by('-date_message')
@@ -73,12 +70,8 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
     template_name = 'messagesusers/message-list-users.html'
     form_class = MessagesForm
 
-        
-
-
     def get_success_url(self, **kwargs):
         return reverse_lazy('your-messages-user', kwargs={'username': self.kwargs.get('username')})
-
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -96,7 +89,6 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
         self.object.save()
         return super().form_valid(form)
 
-
     def get_queryset(self, **kwargs):
         my_recepient = get_object_or_404(
             User, username=self.kwargs.get('username'))
@@ -107,14 +99,15 @@ class MessagesListUsers(LoginRequiredMixin, ListView, FormMixin):
         my_received = MessagesBetweenUsers.objects.filter(
             addressee=self.request.user, sender=my_sender).select_related('addressee', 'sender')
         return my_sent | my_received.order_by('date_message')
-        #return super().get_queryset() Реализовать переадресацию, что бы текущий пользователь не мог переписываться сам с собой.
-
+        # return super().get_queryset() Реализовать переадресацию, что бы текущий пользователь не мог переписываться сам с собой.
 
     def get_context_data(self, **kwargs):
         context = super(MessagesListUsers, self).get_context_data(**kwargs)
         context['title'] = f'Диалог с {get_object_or_404(User, username=self.kwargs.get("username"))}'
-        i_message = MessagesBetweenUsers.objects.filter(sender=self.request.user).select_related('addressee')
-        me_message = MessagesBetweenUsers.objects.filter(addressee=self.request.user).select_related('sender')
+        i_message = MessagesBetweenUsers.objects.filter(
+            sender=self.request.user).select_related('addressee')
+        me_message = MessagesBetweenUsers.objects.filter(
+            addressee=self.request.user).select_related('sender')
         friends = set()
         for x in i_message:
             friends.add(x.addressee)
@@ -166,5 +159,3 @@ def message_delete(request, pk, type, *args):
         'message': my_messages,
     }
     return render(request, 'messagesusers/message-delete.html', context)
-
-

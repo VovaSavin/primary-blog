@@ -1,4 +1,5 @@
 from django import forms
+from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 from .models import Bloger, Comments, Raiting
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -78,6 +79,7 @@ class ImageLoadForm(forms.ModelForm):
 
 
 class CommentsForm(forms.ModelForm):
+
     text_comments = forms.CharField(
         label='Текст комментария',
         required=False,
@@ -87,11 +89,14 @@ class CommentsForm(forms.ModelForm):
         )
     )
 
+    captcha = ReCaptchaField()
+
     class Meta:
         model = Comments
-        fields = ['text_comments']
+        fields = ['text_comments', 'captcha']
+
 
 class RaitingForm(forms.ModelForm):
     class Meta:
         model = Raiting
-        fields = ['who_like','how_blog']
+        fields = ['who_like', 'how_blog']

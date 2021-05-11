@@ -63,8 +63,9 @@
     {% if user.is_authenticated %}
     <form action="" method="POST" style="width: 65%;">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Опубликовать" class="btn btn-primary btn-sm b-comment">
+        {{form.text_comments}}
+        {{form.captcha}}
+        <input type="submit" value="Опубликовать" class="btn btn-primary btn-sm b-comment mt-1">
     </form>
     <br>
     <div class="container-fluid ml-3" style="width: 75%;">

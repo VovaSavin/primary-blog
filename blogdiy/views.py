@@ -93,6 +93,7 @@ class BlogsDetail(GetBlogger, DetailView, FormMixin, View):
     def get_context_data(self, **kwargs):
         context = super(BlogsDetail, self).get_context_data(**kwargs)
         context['title'] = Blog.objects.get(pk=self.kwargs['pk'])
+        context['form'] = CommentsForm()
         return context
 
 
