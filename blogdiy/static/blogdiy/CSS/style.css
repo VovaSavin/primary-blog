@@ -21,6 +21,15 @@ main {
 	float: right;
 }
 
+.nav-link {
+	border-right: 1px solid gray;
+	text-decoration: none;
+}
+
+.nav-link:hover {
+	background-color: rgb(233, 225, 248);
+}
+
 .pagination-message {
 	width: 70%;
 	display: flex;
@@ -75,7 +84,7 @@ img.bd-placeholder-img {
 }
 
 .blog-custom {
-	background-color: rgb(63, 58, 58);
+	background-color: rgb(234, 208, 245);
 	border: 3px double rgb(122, 217, 230);
 	border-radius: 10px;
 }
@@ -92,9 +101,15 @@ img.bd-placeholder-img {
 }
 
 .message-custom {
-	background-color: rgb(36, 34, 34);
+	background-color: rgb(234, 208, 245);
 	float: left;
 	border: 1px solid rgb(215, 216, 213);
+}
+
+.scrolladdresee {
+	float: right;
+	width: 25%;
+	background-color: rgb(241, 225, 248);
 }
 
 .custom-specblog {
@@ -113,7 +128,7 @@ img.bd-placeholder-img {
 }
 
 .scrolling {
-	background-color: rgb(218, 247, 238);
+	background-color: rgb(241, 225, 248);
 	position: relative;
 	overflow-y: scroll;
 	min-height: 470px;
@@ -127,11 +142,11 @@ img.bd-placeholder-img {
 }
 
 .my-mess-r {
-	background-color: rgb(168, 242, 245);
+	background-color: rgb(41, 120, 194);
 }
 
 .my-mess-l {
-	background-color: rgb(174, 253, 194);
+	background-color: rgb(53, 175, 60);
 }
 
 .my-mess-letters {
@@ -216,4 +231,9 @@ img.bd-placeholder-img {
 	border-radius: .25rem;
 	text-align: center;
 	width: 20%;
+}
+
+.about {
+	display: flex;
+	flex-direction: column;
 }

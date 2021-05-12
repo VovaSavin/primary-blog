@@ -37,11 +37,12 @@ myphoto.onclick = function () {
 
 
 function darK(darkSite) {
-    document.body.style.backgroundColor = "#020305";
-    document.body.style.color = "#d8f2f5";
+    document.body.style.backgroundColor = "rgb(241, 225, 248)";
+    document.body.style.color = "#010101";
     document.getElementById("dark").style.display = "none";
     document.getElementById("light").style.display = "flex";
-    document.getElementById('customsblog').style.background = "rgb(63, 58, 58)";
+    document.getElementById('customsblog').style.background = "rgb(234, 208, 245)";
+    document.getElementsByName('scrolladdresee').style.background = "rgb(241, 225, 248)";
 };
 
 function lighT(lightSite) {
@@ -50,6 +51,7 @@ function lighT(lightSite) {
     document.getElementById("light").style.display = "none";
     document.getElementById("dark").style.display = "flex";
     document.getElementById('customsblog').style.background = "#d7f3f8";
+    document.getElementsByClassName('scrolladdresee').style.background = "#ecfffe";
 };
 
 function showInfo(info) {

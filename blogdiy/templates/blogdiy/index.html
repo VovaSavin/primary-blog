@@ -18,10 +18,10 @@
     {% recaptcha_ready action_name='homepage' %}
 </head>
 
-<body class="ml-2 mr-2" style="background-color: #020305; color: #d8f2f5;">
+<body class="ml-2 mr-2" style="background-color: rgb(241, 225, 248); color: #010101;">
     <div class="nav-scroller py-1 mb-1">
         <nav class="nav d-flex justify-content-between">
-            <a class="p-2 link-secondary ml-5" href="{% url 'main' %}" style="text-decoration: none;">
+            <a class="p-2 link-secondary ml-5 nav-link" href="{% url 'main' %}">
                 <span style="vertical-align: middle;">
                     Главная
                 </span>
@@ -33,7 +33,7 @@
                         d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
                 </svg>
             </a>
-            <a class="p-2 link-secondary" href="{% url 'blogers-all' %}" style="text-decoration: none;">
+            <a class="p-2 link-secondary nav-link" href="{% url 'blogers-all' %}">
                 <span style="vertical-align: middle;">
                     Блоггеры
                 </span>
@@ -43,7 +43,7 @@
                         d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
                 </svg>
             </a>
-            <a class="p-2 link-secondary" href="{% url 'blogs-all' %}" style="text-decoration: none;">
+            <a class="p-2 link-secondary nav-link" href="{% url 'blogs-all' %}">
                 <span style="vertical-align: middle;">
                     Все блоги
                 </span>
@@ -56,7 +56,7 @@
                 </svg>
             </a>
             {% if user.is_authenticated %}
-            <a class="p-2 link-secondary" href="{% url 'profile' %}" style="text-decoration: none;">
+            <a class="p-2 link-secondary nav-link" href="{% url 'profile' %}">
                 <span style="vertical-align: middle;">
                     Мой профиль
                 </span>
@@ -66,7 +66,7 @@
                         d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                 </svg>
             </a>
-            <a class="p-2 link-secondary" href="{% url 'profile-create' %}" style="text-decoration: none;">
+            <a class="p-2 link-secondary nav-link" href="{% url 'profile-create' %}" style="text-decoration: none;">
                 <span style="vertical-align: middle;">
                     Редактировать профиль
                 </span>
@@ -78,7 +78,7 @@
                         d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
                 </svg>
             </a>
-            <a class="p-2 link-secondary" href="{% url 'create-blog' %}" style="text-decoration: none;">
+            <a class="p-2 link-secondary nav-link" href="{% url 'create-blog' %}">
                 <span style="vertical-align: middle;">
                     Создать блог
                 </span>
@@ -88,7 +88,7 @@
                         d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
                 </svg>
             </a>
-            <a class="p-2 link-secondary" href="{% url 'your-messages' %}" style="text-decoration: none;">
+            <a class="p-2 link-secondary nav-link" href="{% url 'your-messages' %}">
                 <span style="vertical-align: middle;">
                     Все сообщения
                 </span>
@@ -165,7 +165,7 @@
                 Savin</a></p>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="/about/">About</a></li>
             <li class="list-inline-item"><a href="#">Support</a></li>
         </ul>
         {% block footer %} {% endblock %}

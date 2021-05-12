@@ -5,7 +5,7 @@
 {% block main %}
 {% load static %}
 <div style="display: flex; justify-content: end; padding-right: 2%;">
-    <a id="open-filter" class="btn btn-outline-dark btn-sm" href="#" type="filtersOpen" onclick="showFilter(this)">
+    <a id="open-filter" class="btn btn-outline-info btn-sm" href="#" type="filtersOpen" onclick="showFilter(this)">
         <span>
             <img src="{% static 'blogdiy/IMG/fold-down.svg' %}" alt="fold-down">
         </span>
@@ -15,7 +15,7 @@
         </span>
     </a>
 
-    <a id="hide-filter" class="btn btn-outline-dark btn-sm" href="#" type="filtersClose" onclick="hideFilter(this)">
+    <a id="hide-filter" class="btn btn-outline-info btn-sm" href="#" type="filtersClose" onclick="hideFilter(this)">
         <span>
             <img src="{% static 'blogdiy/IMG/fold-up.svg' %}" alt="fold-up">
         </span>
@@ -94,11 +94,5 @@
             style="text-decoration: none;">создать блог</a>?
     </p>
     {% endif %}
-    {% block js %}
-    {% load static %}
-    <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-
-    <script type="text/javascript" src={% static "blogdiy/JS/message.js" %}></script>
-    {% endblock %}
 </div>
 {% endblock %}

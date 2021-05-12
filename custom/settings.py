@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'registrationonly.apps.RegistrationonlyConfig',
     'messagesusers.apps.MessagesusersConfig',
     'snowpenguin.django.recaptcha3',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'custom.urls'
@@ -138,3 +141,5 @@ RECAPTCHA_PUBLIC_KEY = "6Ld1NtAaAAAAAHw1BDPaeYO2StIckr_MQRAe6tfU"
 RECAPTCHA_PRIVATE_KEY = "6Ld1NtAaAAAAAC1UrsseX3bJ2kATmuwoP09PLm8L"
 RECAPTCHA_DEFAULT_ACTION = "generic"
 RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+SITE_ID = 1
