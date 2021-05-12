@@ -35,6 +35,23 @@ myphoto.onclick = function () {
     }
 };
 
+
+function darK(darkSite) {
+    document.body.style.backgroundColor = "#020305";
+    document.body.style.color = "#d8f2f5";
+    document.getElementById("dark").style.display = "none";
+    document.getElementById("light").style.display = "flex";
+    document.getElementById('customsblog').style.background = "rgb(63, 58, 58)";
+};
+
+function lighT(lightSite) {
+    document.body.style.backgroundColor = "#ecfffe";
+    document.body.style.color = "#000";
+    document.getElementById("light").style.display = "none";
+    document.getElementById("dark").style.display = "flex";
+    document.getElementById('customsblog').style.background = "#d7f3f8";
+};
+
 function showInfo(info) {
     document.getElementById("aboutme").style.display = "block";
     document.getElementById("openinfo").style.display = "none";

@@ -1,6 +1,5 @@
 body {
 	margin: 0px;
-	background: #d7f3f8;
 }
 
 aside {
@@ -76,7 +75,7 @@ img.bd-placeholder-img {
 }
 
 .blog-custom {
-	background-color: #d7f3f8;
+	background-color: rgb(63, 58, 58);
 	border: 3px double rgb(122, 217, 230);
 	border-radius: 10px;
 }
@@ -93,7 +92,7 @@ img.bd-placeholder-img {
 }
 
 .message-custom {
-	background-color: rgb(241, 238, 238);
+	background-color: rgb(36, 34, 34);
 	float: left;
 	border: 1px solid rgb(215, 216, 213);
 }
@@ -185,6 +184,10 @@ img.bd-placeholder-img {
 	display: none;
 }
 
+#dark {
+	display: none;
+}
+
 #all_filter {
 	display: none;
 	flex-direction: column;
@@ -194,6 +197,13 @@ img.bd-placeholder-img {
 	display: flex;
 	flex-direction: row;
 	padding-right: 1%;
+}
+
+.div_for_change_page {
+	display: flex;
+	justify-content: end;
+	margin-right: 2%;
+	width: 100%;
 }
 
 .span_for_search {

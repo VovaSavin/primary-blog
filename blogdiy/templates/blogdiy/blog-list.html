@@ -51,7 +51,7 @@
 <div class="container-fluid" style="width: 70%; float: left; padding: 10px; margin: 10px;">
     {% if blogs %}
     {% for b in blogs %}
-    <div class="container-fluid pb-1 blog-custom">
+    <div id="customsblog" class="container-fluid pb-1 blog-custom">
         <a href="{% url 'blogs-detail' b.id %}">{{ b.title }}</a>
         <br>
         <a href="{{ b.author_blog.bloger.get_absolute_url }}" style="text-decoration: none;">
