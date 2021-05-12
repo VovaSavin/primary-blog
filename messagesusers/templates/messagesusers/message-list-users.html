@@ -42,12 +42,6 @@
             {{form.as_p}}
             <input type="submit" value="Отправить" class="btn btn-primary btn-sm b-cust">
         </form>
-        {% block js %}
-        {% load static %}
-        <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-
-        <script type="text/javascript" src={% static "blogdiy/JS/message.js" %}></script>
-        {% endblock %}
     </div>
     <div name="scrolladdresee" class="container-fluid scrolling scrolladdresee">
         {% for fr in frnds %}

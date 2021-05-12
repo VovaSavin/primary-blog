@@ -21,7 +21,7 @@ class MessagesList(LoginRequiredMixin, ListView):
     model = MessagesBetweenUsers
     context_object_name = 'sms'
     template_name = 'messagesusers/message-list.html'
-    paginate_by = 5
+    paginate_by = 3
 
     def get_queryset(self, **kwargs):
         sett = MessagesBetweenUsers.objects.filter(Q(sender=self.request.user) | Q(
@@ -39,6 +39,7 @@ class MessagesInboxList(LoginRequiredMixin, ListView):
     model = MessagesBetweenUsers
     context_object_name = 'sms'
     template_name = 'messagesusers/message-list.html'
+    paginate_by = 3
 
     def get_queryset(self):
         return MessagesBetweenUsers.objects.filter(addressee=self.request.user).order_by('-date_message')
@@ -54,6 +55,7 @@ class MessagesOutboxList(LoginRequiredMixin, ListView):
     model = MessagesBetweenUsers
     context_object_name = 'sms'
     template_name = 'messagesusers/message-list.html'
+    paginate_by = 3
 
     def get_queryset(self):
         return MessagesBetweenUsers.objects.filter(sender=self.request.user).order_by('-date_message')

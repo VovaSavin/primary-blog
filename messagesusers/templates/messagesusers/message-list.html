@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div id="customsblog" class="container-fluid message-custom" style="width: 70%;">
+<div id="customsblog" class="container-fluid message-custom" style="width: 70%; margin-bottom: 1%;">
     {% if sms %}
     {% for s in sms %}
     <div class="container-fluid pb-1 pt-3">
@@ -33,4 +33,5 @@
     <p>У вас, пока что, нет сообщений.</p>
     {% endif %}
 </div>
+{% include 'include/pagination.html' %}
 {% endblock %}

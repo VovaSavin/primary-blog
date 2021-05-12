@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blogdiy.apps.BlogdiyConfig',
     'registrationonly.apps.RegistrationonlyConfig',
     'messagesusers.apps.MessagesusersConfig',
+    'follow.apps.FollowConfig',
     'snowpenguin.django.recaptcha3',
     'django.contrib.sites',
     'django.contrib.flatpages',
