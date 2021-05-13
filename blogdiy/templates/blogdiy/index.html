@@ -1,5 +1,6 @@
 {% load static recaptcha3 %}
 {% load blogdiy_tag %}
+{% load follow_tag %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +19,7 @@
     {% recaptcha_ready action_name='homepage' %}
 </head>
 
-<body class="ml-2 mr-2" style="background-color: rgb(241, 225, 248); color: #010101;">
+<body class="ml-2 mr-2" style="background-color: #22272e; color: #fdfdfd;">
     <div class="nav-scroller py-1 mb-1">
         <nav class="nav d-flex justify-content-between">
             <a class="p-2 link-secondary ml-5 nav-link" href="{% url 'main' %}">
@@ -158,6 +159,9 @@
                 {% block main %} {% endblock %}
             </div>
         </main>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        {% get_form_follower %}
     </div>
     <footer class="contaiber-fluid my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">© 2021-2021 <span style="font-size: 12px;">edit by </span><a

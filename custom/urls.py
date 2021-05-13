@@ -25,8 +25,9 @@ urlpatterns = [
     path('yourmessage/', include('messagesusers.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
-] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    path('follow/', include('follow.urls')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

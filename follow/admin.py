@@ -8,5 +8,5 @@ from .models import Follower
 class FollowerAdmin(admin.ModelAdmin):
     """Модель Follower в админке"""
     list_display = [
-        "e_mail", "name",
+        "e_mail", "date",
     ]
