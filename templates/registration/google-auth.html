@@ -1,0 +1,8 @@
+{% extends "blogdiy/index.html" %}
+
+{% block main %}
+{{ enter }}
+<a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+    Google Enter
+</a>
+{% endblock %}

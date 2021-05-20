@@ -1,13 +1,14 @@
 {% extends "blogdiy/index.html" %}
+{% load i18n %}
 {% block title %}
 {{ title }}
 {% endblock %}
 {% block main %}
 <div class="mb-3" style="text-align: center; width: 70%;">
     <div class="btn-group" role="group" aria-label="Basic example" style="padding-top: 5px;">
-        <a href="{% url 'your-messages-inbox' %}" class="btn btn-outline-secondary">Входящие</a>
-        <a href="{% url 'your-messages' %}" class="btn btn-outline-secondary">Все</a>
-        <a href="{% url 'your-messages-outbox' %}" class="btn btn-outline-secondary">Исходящие</a>
+        <a href="{% url 'your-messages-inbox' %}" class="btn btn-outline-secondary">{% trans 'Входящие' %}</a>
+        <a href="{% url 'your-messages' %}" class="btn btn-outline-secondary">{% trans 'Все' %}</a>
+        <a href="{% url 'your-messages-outbox' %}" class="btn btn-outline-secondary">{% trans 'Исходящие' %}</a>
     </div>
 </div>
 
@@ -16,21 +17,21 @@
     {% for s in sms %}
     <div class="container-fluid pb-1 pt-3">
         {% if s.addressee == request.user %}
-        <span style="font-weight: bold;">Вам сообщение от: </span><span>{{ s.sender }}</span>
+        <span style="font-weight: bold;">{% trans 'Вам сообщение от' %}: </span><span>{{ s.sender }}</span>
         <p class="small lh-125">Дата: {{ s.date_message }}</p>
         <p class="ml-4 lead">{{s.text_message|truncatechars:40}}</p>
-        <a href="{% url 'your-messages-user' s.sender %}" class="small lh-125">Перейти к переписке</a>
+        <a href="{% url 'your-messages-user' s.sender %}" class="small lh-125">{% trans 'Перейти к переписке' %}</a>
         {% elif s.sender == request.user %}
-        <span style="font-weight: bold;">Ваше сообщение к: </span><span>{{ s.addressee }}</span>
+        <span style="font-weight: bold;">{% trans 'Ваше сообщение к' %}: </span><span>{{ s.addressee }}</span>
         <p class="small lh-125">Дата: {{ s.date_message }}</p>
         <p class="ml-4 lead">{{s.text_message|truncatechars:40}}</p>
-        <a href="{% url 'your-messages-user' s.addressee %}" class="small lh-125">Перейти к переписке</a>
+        <a href="{% url 'your-messages-user' s.addressee %}" class="small lh-125">{% trans 'Перейти к переписке' %}</a>
         {% endif %}
     </div>
     <hr>
     {% endfor %}
     {% else %}
-    <p>У вас, пока что, нет сообщений.</p>
+    <p>{% trans 'У вас, пока что, нет сообщений' %}.</p>
     {% endif %}
 </div>
 {% include 'include/pagination.html' %}

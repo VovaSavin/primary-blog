@@ -1,4 +1,5 @@
 {% extends "blogdiy/index.html" %}
+{% load i18n %}
 {% block title %}
 {{ title }}
 {% endblock %}
@@ -9,7 +10,7 @@
         <span>
             <img src="{% static 'blogdiy/IMG/fold-down.svg' %}" alt="fold-down">
         </span>
-        Показать фильтры
+        {% trans 'Показать фильтры' %}
         <span>
             <img src="{% static 'blogdiy/IMG/fold-down.svg' %}" alt="fold-down">
         </span>
@@ -19,7 +20,7 @@
         <span>
             <img src="{% static 'blogdiy/IMG/fold-up.svg' %}" alt="fold-up">
         </span>
-        Скрыть фильтры
+        {% trans 'Скрыть фильтры' %}
         <span>
             <img src="{% static 'blogdiy/IMG/fold-up.svg' %}" alt="fold-up">
         </span>
@@ -29,13 +30,13 @@
     <p>
     <form action="{% url 'search' %}" method="GET">
         <div class="div_for_search">
-            <span class="span_for_search">Поиск:</span>
+            <span class="span_for_search">{% trans 'Поиск' %}:</span>
             <input class="input_for_search" type="search" name="q" value="" required="">
-            <button class="btn btn-warning btn-sm" type="submit">Найти</button>
+            <button class="btn btn-warning btn-sm" type="submit">{% trans 'Найти' %}</button>
         </div>
     </form>
     </p>
-    <p>Выбор по авторам:</p>
+    <p>{% trans 'Поиск по авторам' %}:</p>
     <div class="sort">
         <form class="sort" action="{% url 'filter' %}" method="GET">
             {% for x in view.get_blogers %}
@@ -43,7 +44,7 @@
             <img class="bd-placeholder-img ml-2" width="25" height="25" src="{{ x.bloger.foto.url }}">
             <span class="small lh-125" style="padding: 1%;">{{x.username}}</span>
             {% endfor %}
-            <button class="btn btn-info" type="submit">Найти</button>
+            <button class="btn btn-info" type="submit">{% trans 'Найти' %}</button>
         </form>
     </div>
 </div>
@@ -71,7 +72,7 @@
             </p>
             <div style="overflow: auto;">
                 <div style="float: left;">
-                    <a href="{% url 'blogs-detail' b.id %}" class="small lh-125">Посмотреть...</a>
+                    <a href="{% url 'blogs-detail' b.id %}" class="small lh-125">{% trans 'Посмотреть' %}...</a>
                 </div>
                 <div style="float: right;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -89,9 +90,9 @@
     {% include 'include/pagination.html' %}
     {% else %}
     <p style="text-align: center;">
-        Нет ещё блогов на этом сайте &#128577;<br>
-        Хотите первым <a class="p-2 link-secondary" href="{% url 'create-blog' %}"
-            style="text-decoration: none;">создать блог</a>?
+        {% trans 'Нет ещё блогов на этом сайте' %} &#128577;<br>
+        {% trans 'Хотите первым' %} <a class="p-2 link-secondary" href="{% url 'create-blog' %}"
+            style="text-decoration: none;">{% trans 'создать блог' %}</a>?
     </p>
     {% endif %}
 </div>

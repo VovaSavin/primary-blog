@@ -1,16 +1,18 @@
 {% extends "blogdiy/index.html" %}
+{% load i18n %}
 {% block title %}
-Создать тему
+{% trans 'Создать тему' %}
 {% endblock %}
 
 {% block main %}
 <h5 style="padding-left: 10px;">
-    Создать тему блога:
+    {% trans 'Создать тему блога' %}:
 </h5>
 {% if form.errors %}
 <p class="errorlist">
-    <strong>Формат изображение не соответствует заданному...<br>
-        <span style="font-size: 12px;">(Допустимые форматы: BMP, EPS, GIF, JPEG, PDF, PNG, PNM, TIFF)</span>
+    <strong>{% trans 'Формат изображение не соответствует заданному' %}...<br>
+        <span style="font-size: 12px;">({% trans 'Допустимые форматы' %}: BMP, EPS, GIF, JPEG, PDF, PNG, PNM,
+            TIFF)</span>
     </strong>
 </p>
 {% endif %}

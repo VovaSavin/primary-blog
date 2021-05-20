@@ -46,6 +46,7 @@ main {
 
 label {
 	font-size: 14px;
+	margin-bottom: 0px;
 }
 
 img.bd-placeholder-img {
@@ -58,7 +59,6 @@ img.bd-placeholder-img {
 	width: 50%;
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem .75rem;
-	margin-top: 5px;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;

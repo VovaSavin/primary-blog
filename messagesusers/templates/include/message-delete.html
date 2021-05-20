@@ -1,6 +1,7 @@
+{% load i18n %}
 <span>
     <a class="for-delete_message" href="{% url 'delete-message' s.pk 'deletemymessage' %}"
         style="text-decoration: none;">
-        Удалить
+        {% trans 'Удалить' %}
     </a>
 </span>

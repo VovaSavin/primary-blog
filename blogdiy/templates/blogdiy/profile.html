@@ -1,4 +1,5 @@
 {% extends "blogdiy/index.html" %}
+{% load i18n %}
 {% block title %}
 {{ title }}
 {% endblock %}
@@ -7,7 +8,7 @@
 
 <div class="container-fluid">
     <div style="float: right; padding: 3px;">
-        <a class="btn btn-outline-secondary" href="{% url 'message-writing' %}">Написать</a>
+        <a class="btn btn-outline-secondary" href="{% url 'message-writing' %}">{% trans 'Написать' %}</a>
 
     </div>
     <p class="lead">
@@ -23,15 +24,14 @@
     <p class="small lh-125">
         Возраст: {% if user.bloger.age %} {{ user.bloger.age }} {% else %} не указан {% endif %}
     </p>
-    <a type="info" id="openinfo" href="#" onclick="showInfo (this)"
-        style="font-size: small; text-decoration: none;">Детальная
-        информация</a>
+    <a type="info" id="openinfo" href="#" onclick="showInfo (this)" style="font-size: small; text-decoration: none;">
+        {% trans 'Детальная информация' %}</a>
     <div id="aboutme" style="display: none;">
         <p style="font-size: 14px; width: 40%;">
             {{ user.bloger.about|safe }}
         </p>
         <a type="info" class="content_toggle" href="#" onclick="hiddenInfo (this)"
-            style="font-size: small; text-decoration: none;">Скрыть информацию</a>
+            style="font-size: small; text-decoration: none;">{% trans 'Скрыть информацию' %}</a>
     </div>
 </div>
 {% if messages %}
@@ -44,7 +44,7 @@
 {% else %}
 <div class="container-fluid">
     <p style="text-align: center;">
-        Перейдите на страницу авторизации.
+        {% trans 'Перейдите на страницу авторизации' %}.
     </p>
 </div>
 {% endif %}

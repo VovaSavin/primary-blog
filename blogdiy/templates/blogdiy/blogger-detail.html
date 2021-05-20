@@ -1,4 +1,5 @@
 {% extends "blogdiy/index.html" %}
+{% load i18n %}
 {% block title %}
 {{ title }}
 {% endblock %}
@@ -10,7 +11,8 @@
         <br>
         {{ oneblogger.name }} {{ oneblogger.surname }} ({{oneblogger.user}})<br>
         {% if request.user != oneblogger.user %}
-        <a href="{% url 'your-messages-user' oneblogger.user %}" class="btn btn-outline-info"> Написать пользователю</a>
+        <a href="{% url 'your-messages-user' oneblogger.user %}" class="btn btn-outline-info"> {% trans 'Написать
+            пользователю' %}</a>
         {% endif %}
     <p class="small lh-125">
         {{oneblogger.user.email}}
@@ -18,29 +20,27 @@
     </p>
 
     <p class="small lh-125">
-        Возраст: {{ oneblogger.age }}
+        {% trans 'Возраст' %}: {{ oneblogger.age }}
     </p>
     {% if oneblogger.about %}
     <a type="info" id="openinfo" href="#" onclick="showInfo (this)"
-        style="font-size: small; text-decoration: none;">Детальная
-        информация</a>
+        style="font-size: small; text-decoration: none;">{%trans 'Детальная информация'%}</a>
     <div id="aboutme" style="display: none;">
         <p style="font-size: 14px; width: 40%;">
             {{ oneblogger.about|safe }}
         </p>
         <a type="info" class="content_toggle" href="#" onclick="hiddenInfo (this)"
-            style="font-size: small; text-decoration: none;">Скрыть информацию</a>
+            style="font-size: small; text-decoration: none;">{% trans 'Скрыть информацию' %}</a>
     </div>
     {% else %}
     <a type="info" class="content_toggle" href="#" onclick="showInfo (this)"
-        style="font-size: small; text-decoration: none;">Детальная
-        информация</a>
+        style="font-size: small; text-decoration: none;">{%trans 'Детальная информация'%}</a>
     <div id="aboutme" style="display: none;">
         <p style="font-size: 14px; width: 40%;">
-            Нет информации о пользователе
+            {% trans 'Нет информации о пользователе' %}
         </p>
         <a type="info" class="content_toggle" href="#" onclick="hiddenInfo (this)"
-            style="font-size: small; text-decoration: none;">Скрыть информацию</a>
+            style="font-size: small; text-decoration: none;">{% trans 'Скрыть информацию' %}</a>
     </div>
     {% endif %}
 

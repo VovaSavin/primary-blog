@@ -1,0 +1,250 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-18 19:33+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:13
+msgid "Показать фильтры"
+msgstr "Показати фільтри"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:23
+msgid "Скрыть фильтры"
+msgstr "Приховати фільтри"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:33
+msgid "Поиск"
+msgstr "Пошук"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:35
+#: .\blogdiy\templates\blogdiy\blog-list.html:47
+msgid "Найти"
+msgstr "Знайти"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:39
+msgid "Поиск по авторам"
+msgstr "Пошук по авторам"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:75
+msgid "Посмотреть"
+msgstr "Переглянути"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:93
+msgid "Нет ещё блогов на этом сайте"
+msgstr "Ще немає записів на сайті"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:94
+msgid "Хотите первым"
+msgstr "Хочете бути першим"
+
+#: .\blogdiy\templates\blogdiy\blog-list.html:95
+#, fuzzy
+#| msgid "Создать блог"
+msgid "создать блог"
+msgstr "створити блог"
+
+#: .\blogdiy\templates\blogdiy\blogger-detail.html:23
+msgid "Возраст"
+msgstr "Вік"
+
+#: .\blogdiy\templates\blogdiy\blogger-detail.html:27
+#: .\blogdiy\templates\blogdiy\blogger-detail.html:37
+#: .\blogdiy\templates\blogdiy\profile.html:28
+msgid "Детальная информация"
+msgstr "Детальна інформація"
+
+#: .\blogdiy\templates\blogdiy\blogger-detail.html:33
+#: .\blogdiy\templates\blogdiy\blogger-detail.html:43
+#: .\blogdiy\templates\blogdiy\profile.html:34
+msgid "Скрыть информацию"
+msgstr "Приховати інформацію"
+
+#: .\blogdiy\templates\blogdiy\blogger-detail.html:40
+msgid "Нет информации о пользователе"
+msgstr "Немає інформації про користувача"
+
+#: .\blogdiy\templates\blogdiy\create-blog.html:4
+#, fuzzy
+#| msgid "Создать блог"
+msgid "Создать тему"
+msgstr "Створити блог"
+
+#: .\blogdiy\templates\blogdiy\create-blog.html:9
+#, fuzzy
+#| msgid "Создать блог"
+msgid "Создать тему блога"
+msgstr "Створити тему блога"
+
+#: .\blogdiy\templates\blogdiy\create-blog.html:13
+#: .\blogdiy\templates\blogdiy\create-blogger.html:13
+msgid "Формат изображение не соответствует заданному"
+msgstr "Формат зображення не відповідає заданному"
+
+#: .\blogdiy\templates\blogdiy\create-blog.html:14
+#: .\blogdiy\templates\blogdiy\create-blogger.html:14
+msgid "Допустимые форматы"
+msgstr "Допустимі формати"
+
+#: .\blogdiy\templates\blogdiy\create-blogger.html:9
+msgid "Изменение данных о себе"
+msgstr "Зміна даних про себе"
+
+#: .\blogdiy\templates\blogdiy\first.html:16
+msgid "Главная страница"
+msgstr "Головна сторінка"
+
+#: .\blogdiy\templates\blogdiy\first.html:21
+msgid "Используйте навигацию вверху страницы"
+msgstr "Використовуйте навігацію зверху сторінки"
+
+#: .\blogdiy\templates\blogdiy\first.html:25
+msgid "Это главная страница блога"
+msgstr "Це головна сторінка блогу"
+
+#: .\blogdiy\templates\blogdiy\first.html:26
+msgid "Для того чтобы иметь возможность создавать темы и комментировать статьи"
+msgstr "Для того щоб мати можливість створювати записи та комментувати статті"
+
+#: .\blogdiy\templates\blogdiy\first.html:27
+msgid "авторизируйтесь на сайте или пройдите регистрацию"
+msgstr "пройдіть авторизацію або зареєструйтесь"
+
+#: .\blogdiy\templates\blogdiy\first.html:28
+msgid "Или же, просто, просматривайте записи и читайте комментарии"
+msgstr "Або, просто, переглядайте записи та читайте комментарі"
+
+#: .\blogdiy\templates\blogdiy\first.html:29
+msgid "Если умеете"
+msgstr "Якщо вмієте"
+
+#: .\blogdiy\templates\blogdiy\index.html:28
+msgid "Главная"
+msgstr "Головна"
+
+#: .\blogdiy\templates\blogdiy\index.html:40
+msgid "Блоггеры"
+msgstr "Блогери"
+
+#: .\blogdiy\templates\blogdiy\index.html:50
+msgid "Все блоги"
+msgstr "Усі блоги"
+
+#: .\blogdiy\templates\blogdiy\index.html:63
+msgid "Мой профиль"
+msgstr "Мій профіль"
+
+#: .\blogdiy\templates\blogdiy\index.html:73
+msgid "Редактировать профиль"
+msgstr "Редагувати профіль"
+
+#: .\blogdiy\templates\blogdiy\index.html:85
+msgid "Создать блог"
+msgstr "Створити блог"
+
+#: .\blogdiy\templates\blogdiy\index.html:95
+msgid "Все сообщения"
+msgstr "Усі повідомлення"
+
+#: .\blogdiy\templates\blogdiy\index.html:108
+msgid "Выход"
+msgstr "Вихід"
+
+#: .\blogdiy\templates\blogdiy\index.html:121
+msgid "Вход"
+msgstr "Вхід"
+
+#: .\blogdiy\templates\blogdiy\index.html:126
+msgid "Регистрация"
+msgstr "Реєстрація"
+
+#: .\blogdiy\templates\blogdiy\index.html:176
+msgid "Последние опубликованные блоги"
+msgstr "останні опубліковані записи"
+
+#: .\blogdiy\templates\blogdiy\profile.html:11
+msgid "Написать"
+msgstr "Написати"
+
+#: .\blogdiy\templates\blogdiy\profile.html:47
+#, fuzzy
+#| msgid "Это главная страница блога"
+msgid "Перейдите на страницу авторизации"
+msgstr "Це головна сторінка блогу"
+
+#: .\blogdiy\templates\include\comment-delete.html:6
+#: .\blogdiy\templates\include\comment-delete.html:11
+#: .\messagesusers\templates\include\message-delete.html:5
+msgid "Удалить"
+msgstr "Видалити"
+
+#: .\blogdiy\templates\include\pagination.html:6
+msgid "В начало"
+msgstr "На початок"
+
+#: .\blogdiy\templates\include\pagination.html:28
+msgid "Последняя"
+msgstr "Остання"
+
+#: .\follow\templates\follow\tag\follow-form.html:3
+msgid "Подпишись на рассылку новых записей"
+msgstr "Підпишись на розсилку нових записів"
+
+#: .\messagesusers\templates\messagesusers\message-list-users.html:18
+msgid "Вы"
+msgstr "Ви"
+
+#: .\messagesusers\templates\messagesusers\message-list-users.html:38
+msgid "У вас, пока что, нет перписки с этим пользователём"
+msgstr "У вас, поки що, немає повідомлень з цим користувачем"
+
+#: .\messagesusers\templates\messagesusers\message-list.html:9
+#, fuzzy
+#| msgid "Вход"
+msgid "Входящие"
+msgstr "Вхідні"
+
+#: .\messagesusers\templates\messagesusers\message-list.html:10
+msgid "Все"
+msgstr "Усі"
+
+#: .\messagesusers\templates\messagesusers\message-list.html:11
+msgid "Исходящие"
+msgstr "Відправлені"
+
+#: .\messagesusers\templates\messagesusers\message-list.html:20
+#, fuzzy
+#| msgid "Все сообщения"
+msgid "Вам сообщение от"
+msgstr "Усі повідомлення"
+
+#: .\messagesusers\templates\messagesusers\message-list.html:23
+#: .\messagesusers\templates\messagesusers\message-list.html:28
+msgid "Перейти к переписке"
+msgstr "Перейти до листування"
+
+#: .\messagesusers\templates\messagesusers\message-list.html:25
+#, fuzzy
+#| msgid "Все сообщения"
+msgid "Ваше сообщение к"
+msgstr "Усі повідомлення"
+
+#: .\messagesusers\templates\messagesusers\message-list.html:34
+msgid "У вас, пока что, нет сообщений"
+msgstr "У вас, поки що, немає повідомлень"

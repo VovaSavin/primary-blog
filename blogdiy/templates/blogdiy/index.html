@@ -1,6 +1,7 @@
 {% load static recaptcha3 %}
 {% load blogdiy_tag %}
 {% load follow_tag %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +25,7 @@
         <nav class="nav d-flex justify-content-between">
             <a class="p-2 link-secondary ml-5 nav-link" href="{% url 'main' %}">
                 <span style="vertical-align: middle;">
-                    Главная
+                    {% trans 'Главная' %}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house"
                     viewBox="0 0 16 16">
@@ -36,7 +37,7 @@
             </a>
             <a class="p-2 link-secondary nav-link" href="{% url 'blogers-all' %}">
                 <span style="vertical-align: middle;">
-                    Блоггеры
+                    {% trans 'Блоггеры' %}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people"
                     viewBox="0 0 16 16">
@@ -46,7 +47,7 @@
             </a>
             <a class="p-2 link-secondary nav-link" href="{% url 'blogs-all' %}">
                 <span style="vertical-align: middle;">
-                    Все блоги
+                    {% trans 'Все блоги' %}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt"
                     viewBox="0 0 16 16">
@@ -59,7 +60,7 @@
             {% if user.is_authenticated %}
             <a class="p-2 link-secondary nav-link" href="{% url 'profile' %}">
                 <span style="vertical-align: middle;">
-                    Мой профиль
+                    {% trans 'Мой профиль' %}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
                     viewBox="0 0 16 16">
@@ -69,7 +70,7 @@
             </a>
             <a class="p-2 link-secondary nav-link" href="{% url 'profile-create' %}" style="text-decoration: none;">
                 <span style="vertical-align: middle;">
-                    Редактировать профиль
+                    {% trans 'Редактировать профиль' %}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"
                     viewBox="0 0 16 16">
@@ -81,7 +82,7 @@
             </a>
             <a class="p-2 link-secondary nav-link" href="{% url 'create-blog' %}">
                 <span style="vertical-align: middle;">
-                    Создать блог
+                    {% trans 'Создать блог' %}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen"
                     viewBox="0 0 16 16">
@@ -91,7 +92,7 @@
             </a>
             <a class="p-2 link-secondary nav-link" href="{% url 'your-messages' %}">
                 <span style="vertical-align: middle;">
-                    Все сообщения
+                    {% trans 'Все сообщения' %}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chat-dots" viewBox="0 0 16 16">
@@ -101,10 +102,9 @@
                         d="M2.165 15.803l.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z" />
                 </svg>
             </a>
-            <a class="p-2 link-secondary mr-3" href="{% url 'logout' %}?next={{request.path}}"
-                style="text-decoration: none;">
+            <a class="p-2 link-secondary mr-3" href="{% url 'logout' %}" style="text-decoration: none;">
                 <span style="vertical-align: middle;">
-                    Выход
+                    {% trans 'Выход' %}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-door-open" viewBox="0 0 16 16">
@@ -117,12 +117,12 @@
             <div class="p-2 link-secondary mr-3">
                 <a href="{% url 'login' %}?next={{request.path}}" class="mr-2" style="text-decoration: none;">
                     <span style="vertical-align: middle;">
-                        Вход
+                        {% trans 'Вход' %}
                     </span>
                 </a>/
                 <a href="{% url 'registrate' %}" class="ml-1" style="text-decoration: none;">
                     <span style="vertical-align: middle;">
-                        Регистрация
+                        {% trans 'Регистрация' %}
                     </span>
                 </a>
             </div>
@@ -134,6 +134,28 @@
 
 
     {% block head %} {% endblock %}
+    <div style="display: flex; flex-direction: row;">
+        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                {% if language.code == LANGUAGE_CODE %}
+                <option value="{{ language.code }}" selected>
+                    {{ language.code }}
+                </option>
+                {% else %}
+                <option value="{{ language.code }}">
+                    {{ language.code }}
+                </option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="Ok">
+        </form>
+    </div>
     <div class="div_for_change_page">
         <a id="light" href="#" type="lightSite" onclick="lighT(this)">
             <span>
@@ -150,7 +172,7 @@
         <aside>
             {% block aside %} {% endblock %}
             <p>
-                Последние опубликованные блоги:
+                {% trans 'Последние опубликованные блоги' %}:
             </p>
             {% get_last_blog %}
         </aside>

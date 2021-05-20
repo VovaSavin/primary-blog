@@ -1,9 +1,11 @@
 {% extends "blogdiy/index.html" %}
+
 {% block title %}
 Авторизация
 {% endblock %}
 
 {% block main %}
+
 {% if form.errors %}
 <p class="errorlist">
     <strong>Логин и пароль не соответствуют</strong>
@@ -18,25 +20,28 @@
 <p class="lead">
     Войдите, что бы посмотреть страницу
 </p>
-<div class="container" style="width: 75%; float: left;">
+<div class="container" style="display: flex; flex-direction: column;">
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        <table>
+        <table style="display: flex; flex-direction: column;">
             <tr>
-                <td>{{ form.username.label_tag }}</td>
+                <td style="padding-right: 1%;">{{ form.username.label_tag }}</td>
                 <td>{{ form.username }}</td>
             </tr>
             <tr>
-                <td>{{ form.password.label_tag }}</td>
+                <td style="padding-right: 1%;">{{ form.password.label_tag }}</td>
                 <td>{{ form.password }}</td>
             </tr>
         </table>
-        <input type="submit" value="login" class="btn btn-primary" />
+        <input type="submit" value="Войти" class="btn btn-primary btn-sm" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
     <a href="{% url 'password_reset' %}">Проебали пароль?</a>
+    <br>
+    <a class="btn btn-primary btn-sm mt-2" style="width: 12em;" href="{% url 'social:begin' 'google-oauth2' %}">
+        Войти через Google
+    </a>
 </div>
-
 {% endif %}
 {% endif %}
 {% endblock %}

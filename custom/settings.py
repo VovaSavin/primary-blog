@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,11 +45,13 @@ INSTALLED_APPS = [
     'snowpenguin.django.recaptcha3',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'social_django',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -77,6 +80,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'custom.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -122,6 +129,18 @@ USE_L10N = True
 USE_TZ = True
 
 
+def gettext(s): return s
+
+
+LANGUAGES = (
+    ('ru', gettext('Russia')),
+    ('uk', gettext('Ukraine')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -142,5 +161,14 @@ RECAPTCHA_PUBLIC_KEY = "6Ld1NtAaAAAAAHw1BDPaeYO2StIckr_MQRAe6tfU"
 RECAPTCHA_PRIVATE_KEY = "6Ld1NtAaAAAAAC1UrsseX3bJ2kATmuwoP09PLm8L"
 RECAPTCHA_DEFAULT_ACTION = "generic"
 RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1073164246431-cdfuilo7a49k52qt9rm1r4skgb5t5j6g.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'j2Wy_oKp4CPNLRy3tPtoSpO2'
+
+LOGIN_URL = '/auth/login/google-oauth2/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 SITE_ID = 1

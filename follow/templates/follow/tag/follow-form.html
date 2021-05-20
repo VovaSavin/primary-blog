@@ -1,5 +1,6 @@
+{% load i18n %}
 <h6 style="font-size: 0.9em;">
-    Подпишись на рассылку новых записей:
+    {% trans 'Подпишись на рассылку новых записей' %}:
 </h6>
 <form action="{% url 'follow'  %}" method="POST" style="width: 15%;">
     {% csrf_token %}

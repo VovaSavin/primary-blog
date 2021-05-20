@@ -6,12 +6,13 @@ from .models import (
     Comments,
     Raiting,
 )
+from modeltranslation.admin import TranslationAdmin
 
 # Register your models here.
 
 
 @admin.register(Bloger)
-class BlogerAdmin(admin.ModelAdmin):
+class BlogerAdmin(TranslationAdmin):
     '''Зарегистрировали модель Bloger и расширим поля в админ странице'''
     list_display = ('name', 'surname', 'age',
                     'get_image')  # Вместо поля с изображением добавляем метод возврата url на фото
@@ -40,7 +41,6 @@ class BlogAdmin(admin.ModelAdmin):
 class CommentsAdmin(admin.ModelAdmin):
     '''Зарегистрировали модель Comments и расширим поля в админ странице'''
     list_display = ('author_comments', 'to_blog', 'date_comment')
-
 
 
 @admin.register(Raiting)

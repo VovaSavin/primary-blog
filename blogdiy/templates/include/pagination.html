@@ -1,8 +1,9 @@
 {% if is_paginated %}
+{% load i18n %}
 <div style="display: flex; width: 40%; margin-bottom: 5px;">
     {% if page_obj.has_previous %}
     {% if page_obj.number|add:'-3' > 1 %}
-    <a class="ml-2 btn btn-outline-primary btn-sm" href="?{{q}}{{author_blog}}page=1">В начало</a>
+    <a class="ml-2 btn btn-outline-primary btn-sm" href="?{{q}}{{author_blog}}page=1">{% trans 'В начало' %}</a>
     {% endif %}
     {% if page_obj.number|add:'-3' >= 3 %}
     <a class="ml-2" href="?{{q}}{{author_blog}}page={{ page_obj.previous_page_number|add:'-3' }}">...</a>
@@ -24,7 +25,7 @@
             {% if page_obj.number|add:'3' < page_obj.paginator.num_pages %} <a
                 class="ml-2 btn btn-outline-primary btn-sm"
                 href="?{{q}}{{author_blog}}page={{page_obj.paginator.num_pages}}">
-                Последняя</a>
+                {% trans 'Последняя' %}</a>
                 {% endif %}
                 {% endif %}
 </div>
