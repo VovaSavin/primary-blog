@@ -155,7 +155,15 @@ MEDIA_URL = '/pictures/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'volodimirsavin56@gmail.com'
+EMAIL_HOST_PASSWORD = 'dcphxqmxdtscgsyf'
+
 
 RECAPTCHA_PUBLIC_KEY = "6Ld1NtAaAAAAAHw1BDPaeYO2StIckr_MQRAe6tfU"
 RECAPTCHA_PRIVATE_KEY = "6Ld1NtAaAAAAAC1UrsseX3bJ2kATmuwoP09PLm8L"

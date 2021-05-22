@@ -127,6 +127,20 @@
                 </a>
             </div>
             {% endif %}
+            {% if user.is_superuser %}
+            <div class="p-2 link-secondary mr-3">
+                <a href="{% url 'admin:index' %}" class="mr-2" style="text-decoration: none;">
+                    <span style="vertical-align: middle;">
+                        Админка
+                    </span>
+                </a>/
+                <a href="{% url 'to-email' %}" class="ml-1" style="text-decoration: none;">
+                    <span style="vertical-align: middle;">
+                        Отправка почты
+                    </span>
+                </a>
+            </div>
+            {% endif %}
         </nav>
         <hr>
     </div>

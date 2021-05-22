@@ -1,0 +1,18 @@
+{% extends "blogdiy/index.html" %}
+{% load blogdiy_tag %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block main %}
+{% if messages %}
+{% for m in messages %}
+<div class="alert alert-info" style="text-align:center; width: 50%;">
+    {{ m }}
+</div>
+{% endfor %}
+{% endif %}
+<div class="container-fluid">
+    {% get_send_form %}
+</div>
+{% endblock %}

@@ -1,4 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django import forms, template
+from django.forms import fields
+from django.http import request
+from django.shortcuts import render, redirect
 from .models import (
     Blog,
     Bloger,
@@ -10,23 +13,25 @@ from .forms import (
     EditBlogerProfile,
     CommentsForm,
     ImageLoadForm,
-    RaitingForm,
+    SendForm,
 )
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import (
     CreateView,
-    UpdateView,
     DeleteView,
     FormMixin,
 )
 from django.utils import timezone
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core.mail import send_mail, BadHeaderError
+from follow.models import Follower
+from .servise import mailing
 
 
 # Create your views here.
@@ -153,6 +158,12 @@ class CreateBlog(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author_blog = self.request.user
+        mailing(
+            "Новая запись на сайте PrimaryBlog",
+            f"На сайте PrimaryBlog появилась новая запись. Перейди по ссылке...",
+            Follower.objects.all(),
+        )
+
         return super().form_valid(form)
 
 
@@ -296,3 +307,27 @@ class SearchBlog(GetBlogger, ListView):
         context = super().get_context_data(*args, **kwargs)
         context["q"] = f'q={self.request.GET.get("q")}&'
         return context
+
+
+@permission_required('blogdiy.only_superuser', raise_exception=True)
+def send_mails(request):
+    """Отправка сообщения на почту тем, кто подписался"""
+    if request.method == 'POST':
+        if SendForm(request.POST).is_valid():
+            theme = request.POST.get("theme_message")
+            text = request.POST.get("text_message_mail")
+            if theme and text:
+                try:
+                    mailing(theme, text, Follower.objects.all())
+                except BadHeaderError:
+                    messages.error(request, "Некорректные данные")
+                if mailing:
+                    messages.success(request, "Письмо отправлено!")
+                    return redirect(reverse_lazy("to-email"))
+                else:
+                    messages.error(request, "Не отправленно!")
+            else:
+                messages.info(request, "Есть пустые поля!")
+                return redirect(reverse_lazy("to-email"))
+
+    return render(request, 'blogdiy/sender.html')

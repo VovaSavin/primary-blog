@@ -35,6 +35,7 @@ class Bloger(models.Model):
         return reverse('blogers-detail', args=[str(self.id)])
 
     class Meta:
+        permissions = (("only_superuser", "Send message to mail"),)
         verbose_name = 'Блоггер'
         verbose_name_plural = 'Блоггеры'
 

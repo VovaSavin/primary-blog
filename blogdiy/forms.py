@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import fields
 from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 from .models import Bloger, Comments, Raiting
 from django.contrib.auth.models import User
@@ -100,3 +101,25 @@ class RaitingForm(forms.ModelForm):
     class Meta:
         model = Raiting
         fields = ['who_like', 'how_blog']
+
+
+class SendForm(forms.Form):
+    """send messages form"""
+    theme_message = forms.CharField(
+        label='Тема сообщения:',
+        required=False,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Тема сообщения...'}
+        )
+    )
+    text_message_mail = forms.CharField(
+        label='Текст сообщения:',
+        required=False,
+        widget=forms.Textarea(
+            attrs={'class': 'form-control', 'placeholder': 'Оставь своё сообщение...',
+                   'rows': 5}
+        )
+    )
+
+    class Meta:
+        fields = ["theme_message", "text_message"]

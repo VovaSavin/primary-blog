@@ -1,0 +1,8 @@
+<h6 style="font-size: 0.9em;">
+    Отправка сообщения на почту:
+</h6>
+<form action="{% url 'to-email'  %}" method="POST" style="width: 45%;">
+    {% csrf_token %}
+    {{ sendform }}
+    <button class="btn btn-info btn-sm mt-1 mb-1" type="submit">Send</button>
+</form>

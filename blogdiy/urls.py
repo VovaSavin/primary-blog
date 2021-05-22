@@ -18,4 +18,6 @@ urlpatterns = [
          views.edit_profile_info, name='profile-create'),
     path('blogs/<int:pk>/<slug:type>/',
          views.delete_comment, name='delete-comment'),
+    path('to-email/',
+         views.send_mails, name='to-email'),
 ]
