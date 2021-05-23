@@ -80,6 +80,7 @@ target/
 # IPython
 profile_default/
 ipython_config.py
+server_settings.py
 
 # pyenv
 .python-version
@@ -129,4 +130,4 @@ dmypy.json
 .pyre/
 *.bak
 *.sqlite3
-.server_settings.py
+
