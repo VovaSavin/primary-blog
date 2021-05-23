@@ -82,6 +82,7 @@ profile_default/
 ipython_config.py
 server_settings.py
 
+
 # pyenv
 .python-version
 
