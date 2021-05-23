@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,6 +136,11 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'  # Адресс для ссылки на статические файлы
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/pictures/'
 
@@ -148,8 +154,6 @@ LOGOUT_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-RECAPTCHA_PUBLIC_KEY = "6Ld1NtAaAAAAAHw1BDPaeYO2StIckr_MQRAe6tfU"
-RECAPTCHA_PRIVATE_KEY = "6Ld1NtAaAAAAAC1UrsseX3bJ2kATmuwoP09PLm8L"
 RECAPTCHA_DEFAULT_ACTION = "generic"
 RECAPTCHA_SCORE_THRESHOLD = 0.5
 
