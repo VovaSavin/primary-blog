@@ -131,6 +131,6 @@ dmypy.json
 .pyre/
 *.bak
 *.sqlite3
-server_settings.*
+server_settings.py
 
 
