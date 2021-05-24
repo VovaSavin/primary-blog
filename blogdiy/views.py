@@ -241,14 +241,14 @@ def edit_profile_info(request):
 class RaitingToBlog(LoginRequiredMixin, View):
     '''Класс для рейтинга блогов'''
 
-    def get_client_ip(self, request):
-        """Метод для IP пользователя"""
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0]
-        else:
-            ip = request.META.get('REMOTE_ADDR')
-        print(ip)
+    # def get_client_ip(self, request):
+    #     """Метод для IP пользователя"""
+    #     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    #     if x_forwarded_for:
+    #         ip = x_forwarded_for.split(',')[0]
+    #     else:
+    #         ip = request.META.get('REMOTE_ADDR')
+    #     print(ip)
 
     def post(self, request, pk, *args):
         '''
@@ -258,7 +258,6 @@ class RaitingToBlog(LoginRequiredMixin, View):
         who = self.request.user
         whom = Blog.objects.get(id=pk)
         Raiting.objects.get_or_create(who_like=who, how_blog=whom)
-        self.get_client_ip(request)
         return redirect(reverse_lazy('blogs-detail', args=[str(pk)]))
 
 
