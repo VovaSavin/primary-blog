@@ -255,7 +255,7 @@ class RaitingToBlog(LoginRequiredMixin, View):
         Отправка post запроса и создание обьекта Raiting
         для блога с id=pk, текущим пользователем
         '''
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             who = self.request.user
             whom = Blog.objects.get(id=pk)
             Raiting.objects.get_or_create(who_like=who, how_blog=whom)
